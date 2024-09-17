@@ -3,7 +3,7 @@ import numpy as np
 
 
 
-with open("data.csv", "r") as f:
+with open("C:\Innovation project\HousingProject\Melbourne_housing_FULL.csv", "r") as f:
     data = pd.read_csv(f)
 
 # Print the first few rows to verify the data
