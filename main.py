@@ -28,6 +28,8 @@ def build_lstm_model(units=50, dropout_rate=0.2):
     return model
 
 # Function to train the LSTM model with cross-validation
+from sklearn.metrics import r2_score, mean_absolute_error
+
 def LSTM_TimeSeries_Model(df, seq_length=12):
     data = df[['Price']].values
     scaler = MinMaxScaler()
@@ -40,26 +42,48 @@ def LSTM_TimeSeries_Model(df, seq_length=12):
     model = build_lstm_model()
     model.fit(X_train, y_train, epochs=50, batch_size=32, verbose=1)
     
+    # Make predictions
     y_pred = model.predict(X_test)
+    
+    # Rescale predictions and true values back to the original scale
     y_pred_rescaled = scaler.inverse_transform(y_pred)
     y_test_rescaled = scaler.inverse_transform(y_test.reshape(-1, 1))
     
+    # Calculate metrics
     test_mse = mean_squared_error(y_test_rescaled, y_pred_rescaled)
+    r2 = r2_score(y_test_rescaled, y_pred_rescaled)
+    mae = mean_absolute_error(y_test_rescaled, y_pred_rescaled)
+    
     print(f"Test Mean Squared Error: {test_mse}")
+    print(f"R² Score (Confidence Score): {r2}")
+    print(f"Mean Absolute Error: {mae}")
     
     return model, scaler
 
 # Function to train and return a Linear Regression model
 def LinearRegressionModel(df):
-    X = df.drop('Price', axis=1)
-    y = df['Price']
+    # Columns that might not be present in the dataset
+    non_feature_cols = ['Suburb', 'Postcode']
+    
+    # Drop the columns only if they exist in the DataFrame
+    non_feature_cols = [col for col in non_feature_cols if col in df.columns]
+    X = df.drop(non_feature_cols, axis=1)
+    
+    # Define y (target variable) as the last available month (you can modify this as needed)
+    y = X.pop('03 2024')  # Example: Using the latest month as the target variable
+    
+    # Normalize the feature data
     scaler = MinMaxScaler()
     X_scaled = scaler.fit_transform(X)
     
+    # Split the data into training and testing sets
     X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.3, random_state=42)
+    
+    # Train the linear regression model
     model = LinearRegression()
     model.fit(X_train, y_train)
     
+    # Make predictions and calculate mean squared error
     y_pred = model.predict(X_test)
     mse = mean_squared_error(y_test, y_pred)
     print(f'Linear Regression Mean Squared Error: {mse}')
@@ -86,11 +110,15 @@ def predict_price_for_postcode(df, postcode, months, model, scaler=None, model_t
         return predicted_price
 
 # Load the dataset
-dataset = input("Enter the name of the dataset file (CSV format): ")
-df = pd.read_csv(dataset)
+dfType = input("Enter the type of dataset: \n1. Mixed Data\n2. Time Series Data\n")
+df = input("Enter the name of the dataset file (CSV format): ")
+
 
 # Preprocess the dataset using Preprocessor.py functions
-df = preprocessor.MixedDataPreprocessing(dataset)
+if dfType == '1':
+    df = preprocessor.MixedDataPreprocessing(df)
+elif dfType == '2':
+    df = preprocessor.TimeSeriesPreprocessor(df)
 
 # Ask the user for input
 postcode = int(input("Enter the postcode for prediction: "))

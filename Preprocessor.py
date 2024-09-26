@@ -8,12 +8,11 @@ import seaborn as sns
 
 Months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
-# This is a general purpose data preprocessing function that can be used for any Most datasets
 def MixedDataPreprocessing(inputFileName):
     """
     This function processes mixed datasets (e.g., sale price data) by handling missing values, 
-    outliers, normalizing numeric features, and creating new features such as price per room, 
-    price per square meter, and year-over-year price changes.
+    outliers, normalizing numeric features (except Price), and creating new features such as 
+    price per room, price per square meter, and year-over-year price changes.
     
     Args:
     inputFileName (str): The name of the dataset to be processed.
@@ -28,6 +27,7 @@ def MixedDataPreprocessing(inputFileName):
     # Define the columns that should be in the final dataset
     first_dataset_columns = ['Suburb', 'Address', 'Rooms', 'Type', 'Price', 'Method', 'SellerG', 'Date', 'Postcode',
                              'Regionname', 'Propertycount', 'Distance', 'CouncilArea', 'Year', 'Month', 'Landsize']
+    
     # Handle missing values
     df['Postcode'] = df['Postcode'].fillna(0)  # or drop missing rows: df.dropna(subset=['Postcode'], inplace=True)
 
@@ -133,13 +133,13 @@ def MixedDataPreprocessing(inputFileName):
         df[column] = np.where(df[column] > upper_whisker, upper_whisker, df[column])
 
     # Apply IQR method to numeric columns (including newly created ones)
-    numeric_cols = ['Price', 'Rooms', 'Distance', 'Propertycount', 'Price_per_Room', 'Price_per_Square_Meter']
+    numeric_cols = ['Rooms', 'Distance', 'Propertycount', 'Price_per_Room', 'Price_per_Square_Meter']
     for col in numeric_cols:
         handle_outliers_IQR(df_clean, col)
 
     print(df_clean.head())
 
-    # Step 6: Normalize numeric features using Min-Max Scaling
+    # Step 6: Normalize numeric features using Min-Max Scaling (exclude Price)
     scaler = MinMaxScaler()
     df_clean[numeric_cols] = scaler.fit_transform(df_clean[numeric_cols])
 
@@ -149,61 +149,10 @@ def MixedDataPreprocessing(inputFileName):
         os.remove(outputFilename)
     df_clean.to_csv(outputFilename, index=False)
     print(f'Processed data saved to {outputFilename}')
-    """
-    #plot the housing price distribution per postcode
-    df_clean.groupby('Postcode')['Price'].mean().plot(kind='bar')
-    plt.title('Average Price per Postcode')
-    plt.show()
-
-    #plot the housing price distribution per suburb
-    df_clean.groupby('Suburb')['Price'].mean().plot(kind='bar')
-    plt.title('Average Price per Suburb')
-    plt.show()
-
-    #plot the housing price distribution per type
-    df_clean.groupby('Type')['Price'].mean().plot(kind='bar')
-    plt.title('Average Price per Type')
-    plt.show()
-
-    #plot a heatmap of the correlation matrix
-    plt.figure(figsize=(12, 8))
-    sns.heatmap(df_clean.corr(), annot=True, cmap='coolwarm', fmt='.2f')
-    plt.title('Correlation Matrix')
-    plt.show()
-    
-    #plot the distribution of the target variable
-    plt.figure(figsize=(8, 6))
-    sns.histplot(df_clean['Price'], kde=True)
-    plt.title('Price Distribution')
-    plt.show()
-
-    #plot the heatmapt of the most sold properties with regards to distance
-    plt.figure(figsize=(12, 8))
-    sns.heatmap(df_clean.groupby(['Suburb', 'Type'])['Distance'].count().unstack(), cmap='coolwarm', annot=True, fmt='d')
-    plt.title('Most Sold Properties by Type and Distance')
-    plt.show()
-
-    """
-    # Step 8 : Drop features that will not directly impact the model
-    if 'Suburb' in df_clean.columns:
-        df_clean.drop(['Suburb'], axis=1, inplace=True)
-    if 'Address' in df_clean.columns:
-        df_clean.drop(['Address'], axis=1, inplace=True)
-    if 'SellerG' in df_clean.columns:
-        df_clean.drop(['SellerG'], axis=1, inplace=True)
-    if 'Regionname' in df_clean.columns:
-        df_clean.drop(['Regionname'], axis=1, inplace=True)
-    if 'Propertycount' in df_clean.columns:
-        df_clean.drop(['Propertycount'], axis=1, inplace=True)
-    if 'CouncilArea' in df_clean.columns:
-        df_clean.drop(['CouncilArea'], axis=1, inplace=True)
-    print(df_clean.head())
     
     return df_clean
 
     
-
-
 
 # This works with the datasets that go with the Rent_nBF/BH_Final.csv format
 def TimeSeriesPreprocessor(inputFileName):
@@ -231,11 +180,21 @@ def TimeSeriesPreprocessor(inputFileName):
     # Convert to integer
     df['Postcode'] = df['Postcode'].astype(int)
 
-    # Convert all columns with Month-Year format to datetime with only month and year. the given format is like May 2021 it needs to be 05-2021
-    for col in df.columns:
-        if col in Months:
-            df[col] = pd.to_datetime(df[col], format='%b %Y').dt.strftime('%m-%Y')
+    non_date_cols = ['Suburb', 'Postcode']
+    # Extract the columns that need to be converted to date format
+    date_cols = df.columns.difference(non_date_cols)
 
+    # Convert the date column names to 'mm-yyyy' format
+    new_date_cols = [pd.to_datetime(col, format='%b %Y').strftime('%m-%Y') for col in date_cols]
+
+    # Create a mapping of old to new column names
+    column_mapping = dict(zip(date_cols, new_date_cols))
+
+    # Rename the columns in the DataFrame
+    df.rename(columns=column_mapping, inplace=True)
+
+    # Display the updated DataFrame
+    df.head()
 
     # Save the processed data to a new CSV file. delete the exising file if it exists
     outputFilename = 'processed_' + inputFileName
