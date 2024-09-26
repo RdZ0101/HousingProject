@@ -28,6 +28,11 @@ def MixedDataPreprocessing(inputFileName):
     # Define the columns that should be in the final dataset
     first_dataset_columns = ['Suburb', 'Address', 'Rooms', 'Type', 'Price', 'Method', 'SellerG', 'Date', 'Postcode',
                              'Regionname', 'Propertycount', 'Distance', 'CouncilArea', 'Year', 'Month', 'Landsize']
+    # Handle missing values
+    df['Postcode'] = df['Postcode'].fillna(0)  # or drop missing rows: df.dropna(subset=['Postcode'], inplace=True)
+
+    # Convert to integer
+    df['Postcode'] = df['Postcode'].astype(int)
 
     # Step 1: Convert 'Date' column to datetime and extract useful features like year and month
     df['Date'] = pd.to_datetime(df['Date'], format='%d/%m/%Y')
@@ -132,6 +137,8 @@ def MixedDataPreprocessing(inputFileName):
     for col in numeric_cols:
         handle_outliers_IQR(df_clean, col)
 
+    print(df_clean.head())
+
     # Step 6: Normalize numeric features using Min-Max Scaling
     scaler = MinMaxScaler()
     df_clean[numeric_cols] = scaler.fit_transform(df_clean[numeric_cols])
@@ -142,7 +149,7 @@ def MixedDataPreprocessing(inputFileName):
         os.remove(outputFilename)
     df_clean.to_csv(outputFilename, index=False)
     print(f'Processed data saved to {outputFilename}')
-
+    """
     #plot the housing price distribution per postcode
     df_clean.groupby('Postcode')['Price'].mean().plot(kind='bar')
     plt.title('Average Price per Postcode')
@@ -176,8 +183,22 @@ def MixedDataPreprocessing(inputFileName):
     plt.title('Most Sold Properties by Type and Distance')
     plt.show()
 
+    """
     # Step 8 : Drop features that will not directly impact the model
-    df_clean.drop(['Suburb', 'Address','SellerG', 'Date', 'Regionname', 'Propertycount',  'CouncilArea'], axis=1, inplace=True)
+    if 'Suburb' in df_clean.columns:
+        df_clean.drop(['Suburb'], axis=1, inplace=True)
+    if 'Address' in df_clean.columns:
+        df_clean.drop(['Address'], axis=1, inplace=True)
+    if 'SellerG' in df_clean.columns:
+        df_clean.drop(['SellerG'], axis=1, inplace=True)
+    if 'Regionname' in df_clean.columns:
+        df_clean.drop(['Regionname'], axis=1, inplace=True)
+    if 'Propertycount' in df_clean.columns:
+        df_clean.drop(['Propertycount'], axis=1, inplace=True)
+    if 'CouncilArea' in df_clean.columns:
+        df_clean.drop(['CouncilArea'], axis=1, inplace=True)
+    print(df_clean.head())
+    
     return df_clean
 
     
@@ -204,6 +225,11 @@ def TimeSeriesPreprocessor(inputFileName):
 
     #drop duplicates if suburb and postcode both are duplicated
     df.drop_duplicates(subset=['Suburb', 'Postcode'], keep='first', inplace=True)
+    # Handle missing values
+    df['Postcode'] = df['Postcode'].fillna(0)  # or drop missing rows: df.dropna(subset=['Postcode'], inplace=True)
+
+    # Convert to integer
+    df['Postcode'] = df['Postcode'].astype(int)
 
     # Convert all columns with Month-Year format to datetime with only month and year. the given format is like May 2021 it needs to be 05-2021
     for col in df.columns:
@@ -220,9 +246,25 @@ def TimeSeriesPreprocessor(inputFileName):
 
     
     df_clean = df
+    """
     #plot the housing price distribution per postcode
     df_clean.groupby('Postcode')['Price'].mean().plot(kind='bar')
     plt.title('Average Price per Postcode')
     plt.show()
-    df_clean.drop(['Suburb', 'Address','SellerG', 'Date', 'Regionname', 'Propertycount',  'CouncilArea'], axis=1, inplace=True)
+    """
+    if 'Suburb' in df_clean.columns:
+        df_clean.drop(['Suburb'], axis=1, inplace=True)
+    if 'Address' in df_clean.columns:
+        df_clean.drop(['Address'], axis=1, inplace=True)
+    if 'SellerG' in df_clean.columns:
+        df_clean.drop(['SellerG'], axis=1, inplace=True)
+    if 'Regionname' in df_clean.columns:
+        df_clean.drop(['Regionname'], axis=1, inplace=True)
+    if 'Propertycount' in df_clean.columns:
+        df_clean.drop(['Propertycount'], axis=1, inplace=True)
+    if 'CouncilArea' in df_clean.columns:
+        df_clean.drop(['CouncilArea'], axis=1, inplace=True)
+    
+    print(df_clean.head())
+
     return df_clean
