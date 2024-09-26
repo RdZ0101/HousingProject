@@ -1,9 +1,12 @@
+import os
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
 from sklearn.preprocessing import MinMaxScaler
 
+
 # Load the dataset
-df = pd.read_csv('/kaggle/input/dataset2/Melbourne_housing_FULL.csv')
+df = pd.read_csv('Melbourne_housing_FULL.csv')
 
 # Define the columns that should be in the final dataset, based on the first dataset
 first_dataset_columns = ['Suburb', 'Address', 'Rooms', 'Type', 'Price', 'Method', 'SellerG', 'Date', 'Postcode',
@@ -19,6 +22,12 @@ df = df[first_dataset_columns]
 
 # Step 3: Remove records with missing values
 df_clean = df.dropna()
+
+# plot the outliers in a boxplot
+plt.figure(figsize=(10, 6))
+df_clean.boxplot(column=['Price', 'Rooms', 'Distance', 'Propertycount'])
+plt.title('Boxplot of Price, Rooms, Distance, and Propertycount before handling outliers')
+plt.show()
 
 # Step 4: Handle outliers using the IQR method
 def handle_outliers_IQR(df, column):
@@ -38,10 +47,18 @@ numeric_cols = ['Price', 'Rooms', 'Distance', 'Propertycount']
 for col in numeric_cols:
     handle_outliers_IQR(df_clean, col)
 
+# plot the outliers in a boxplot
+plt.figure(figsize=(10, 6))
+df_clean.boxplot(column=['Price', 'Rooms', 'Distance', 'Propertycount'])
+plt.title('Boxplot of Price, Rooms, Distance, and Propertycount after handling outliers')
+plt.show()
+
 # Step 5: Normalize numeric features using Min-Max Scaling
 scaler = MinMaxScaler()
 df_clean[numeric_cols] = scaler.fit_transform(df_clean[numeric_cols])
 
 # Save the processed data to a new CSV file
-output_file = '/kaggle/working/processed_housing_data2.csv'
-df_clean.to_csv(output_file, index=False)
+output_file = 'processed_housing_data2.csv'
+if not os.path.exists(output_file):
+    df_clean.to_csv(output_file, index=False)
+    print(f"Processed data saved to {output_file}")
