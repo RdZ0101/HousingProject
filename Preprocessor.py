@@ -5,35 +5,85 @@ import matplotlib.pyplot as plt
 from sklearn.preprocessing import MinMaxScaler
 import seaborn as sns
 
-def VisualizeData(DataFrame):
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+def VisualizeData(dataframe):
     """
-    This function visualizes the data using a pairplot and a heatmap of the correlation matrix.
-    
-    Args:
-    DataFrame (pd.DataFrame): The dataset to be visualized.
+    Visualizes the data using a pairplot, a heatmap of the correlation matrix, 
+    and various bar charts for price analysis with increased font size and adjusted plot sizes.
     """
+    # Set global font size for all plots
+    plt.rcParams.update({'font.size': 14})
+
+    # Convert categorical columns to numeric if necessary or drop them for the correlation matrix
+    numeric_df = dataframe.select_dtypes(include=['float64', 'int64'])
+
     # Pairplot of the dataset
-    sns.pairplot(DataFrame)
+    sns.pairplot(dataframe, height=3)  # Increase plot size by adjusting height
     plt.show()
-    
-    # Heatmap of the correlation matrix
-    plt.figure(figsize=(12, 8))
-    sns.heatmap(DataFrame.corr(), annot=True, cmap='coolwarm')
+
+    # Correlation heatmap (use only numeric columns)
+    plt.figure(figsize=(14, 10))  # Increase size for better fit
+    sns.heatmap(numeric_df.corr(), annot=True, cmap='coolwarm')
     plt.title('Correlation Matrix')
     plt.show()
 
-    #plot the housing price distribution per postcode
-    DataFrame.groupby('Postcode')['Price'].mean().plot(kind='bar')
+    # Average price per postcode
+    plt.figure(figsize=(16, 8))  # Increase width and height for better readability
+    dataframe.groupby('Postcode')['Price'].mean().plot(kind='bar')
     plt.title('Average Price per Postcode')
+    plt.xlabel('Postcode')
+    plt.ylabel('Average Price')
+    plt.xticks(rotation=90)  # Rotate x-axis labels for better readability
     plt.show()
 
-    #plot the method of sale if the Dataframe has a column called method distribution per postcode
-    if 'Method' in DataFrame.columns:
-        DataFrame.groupby('Method')['Price'].mean().plot(kind='bar')
+    # Average price per method (if applicable)
+    if 'Method' in dataframe.columns:
+        plt.figure(figsize=(12, 6))  # Increase size
+        dataframe.groupby('Method')['Price'].mean().plot(kind='bar')
         plt.title('Average Price per Method')
+        plt.xlabel('Method')
+        plt.ylabel('Average Price')
+        plt.xticks(rotation=45)  # Rotate x-axis labels slightly
         plt.show()
     
-    
+    plt.figure(figsize=(10, 6))
+    sns.scatterplot(x=dataframe['Rooms'], y=dataframe['Price'], hue=dataframe['Postcode'], palette='coolwarm')
+    plt.title('Price vs Number of Rooms, Colored by Postcode')
+    plt.xlabel('Number of Rooms')
+    plt.ylabel('Price')
+    plt.show()
+
+    plt.figure(figsize=(14, 8))
+    sns.boxplot(x='Postcode', y='Price', data=dataframe)
+    plt.title('Price Distribution by Postcode')
+    plt.xlabel('Postcode')
+    plt.ylabel('Price')
+    plt.xticks(rotation=90)  # Rotate for readability
+    plt.show()
+
+    sns.pairplot(dataframe[['Rooms', 'Postcode', 'Price']], diag_kind='kde', height=3)
+    plt.show()
+
+    plt.figure(figsize=(10, 6))
+    sns.violinplot(x='Rooms', y='Price', data=dataframe)
+    plt.title('Price Distribution by Number of Rooms')
+    plt.xlabel('Number of Rooms')
+    plt.ylabel('Price')
+    plt.show()
+
+
+    plt.figure(figsize=(16, 8))
+    sns.barplot(x='Postcode', y='Price', hue='Rooms', data=dataframe)
+    plt.title('Average Price by Postcode and Number of Rooms')
+    plt.xlabel('Postcode')
+    plt.ylabel('Average Price')
+    plt.xticks(rotation=90)
+    plt.show()
+
+
 
 
 def MixedDataPreprocessing(inputFileName):
