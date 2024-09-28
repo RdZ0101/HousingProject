@@ -56,7 +56,7 @@ def LSTM_TimeSeries_Model(df, seq_length=12):
     
     print(f"Test Mean Squared Error: {test_mse}")
     print(f"R² Score (Confidence Score): {r2}")
-    print(f"Mean Absolute Error: {mae}")
+    print(f"Mean Absolute Error: {mae}") #add F1 score to the metrics
     
     return model, scaler
 
@@ -120,7 +120,7 @@ if dfType == '1':
 elif dfType == '2':
     df = preprocessor.TimeSeriesPreprocessor(df)
 
-# Ask the user for input
+# Ask the user for input for the number of rooms
 postcode = int(input("Enter the postcode for prediction: "))
 method = input("Press 1 to get rent prediction, 2 to get Sale price prediction: ")
 months = int(input("Enter the time period for prediction (in months): "))

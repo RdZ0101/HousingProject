@@ -5,8 +5,36 @@ import matplotlib.pyplot as plt
 from sklearn.preprocessing import MinMaxScaler
 import seaborn as sns
 
+def VisualizeData(DataFrame):
+    """
+    This function visualizes the data using a pairplot and a heatmap of the correlation matrix.
+    
+    Args:
+    DataFrame (pd.DataFrame): The dataset to be visualized.
+    """
+    # Pairplot of the dataset
+    sns.pairplot(DataFrame)
+    plt.show()
+    
+    # Heatmap of the correlation matrix
+    plt.figure(figsize=(12, 8))
+    sns.heatmap(DataFrame.corr(), annot=True, cmap='coolwarm')
+    plt.title('Correlation Matrix')
+    plt.show()
 
-Months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    #plot the housing price distribution per postcode
+    DataFrame.groupby('Postcode')['Price'].mean().plot(kind='bar')
+    plt.title('Average Price per Postcode')
+    plt.show()
+
+    #plot the method of sale if the Dataframe has a column called method distribution per postcode
+    if 'Method' in DataFrame.columns:
+        DataFrame.groupby('Method')['Price'].mean().plot(kind='bar')
+        plt.title('Average Price per Method')
+        plt.show()
+    
+    
+
 
 def MixedDataPreprocessing(inputFileName):
     """
@@ -23,7 +51,7 @@ def MixedDataPreprocessing(inputFileName):
     
     # Load the dataset
     df = pd.read_csv(inputFileName)
-
+    #fix this to pass if the column is not present
     # Define the columns that should be in the final dataset
     first_dataset_columns = ['Suburb', 'Address', 'Rooms', 'Type', 'Price', 'Method', 'SellerG', 'Date', 'Postcode',
                              'Regionname', 'Propertycount', 'Distance', 'CouncilArea', 'Year', 'Month', 'Landsize']
@@ -150,11 +178,12 @@ def MixedDataPreprocessing(inputFileName):
     df_clean.to_csv(outputFilename, index=False)
     print(f'Processed data saved to {outputFilename}')
     
+    VisualizeData(df_clean)
     return df_clean
 
     
 
-# This works with the datasets that go with the Rent_nBF/BH_Final.csv format
+# This works with the datasets that go with the Rent_nBF/BH_Final.csv format these datasets are having quarterly prices
 def TimeSeriesPreprocessor(inputFileName):
     """
     This function processes time-series datasets, typically rental price datasets.
@@ -205,12 +234,7 @@ def TimeSeriesPreprocessor(inputFileName):
 
     
     df_clean = df
-    """
-    #plot the housing price distribution per postcode
-    df_clean.groupby('Postcode')['Price'].mean().plot(kind='bar')
-    plt.title('Average Price per Postcode')
-    plt.show()
-    """
+    
     if 'Suburb' in df_clean.columns:
         df_clean.drop(['Suburb'], axis=1, inplace=True)
     if 'Address' in df_clean.columns:
@@ -225,5 +249,5 @@ def TimeSeriesPreprocessor(inputFileName):
         df_clean.drop(['CouncilArea'], axis=1, inplace=True)
     
     print(df_clean.head())
-
+    VisualizeData(df_clean)
     return df_clean
