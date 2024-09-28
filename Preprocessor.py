@@ -228,7 +228,7 @@ def MixedDataPreprocessing(inputFileName):
     df_clean.to_csv(outputFilename, index=False)
     print(f'Processed data saved to {outputFilename}')
     
-    VisualizeData(df_clean)
+    #VisualizeData(df_clean)
     return df_clean
 
     
@@ -299,5 +299,5 @@ def TimeSeriesPreprocessor(inputFileName):
         df_clean.drop(['CouncilArea'], axis=1, inplace=True)
     
     print(df_clean.head())
-    VisualizeData(df_clean)
+    #VisualizeData(df_clean)
     return df_clean
