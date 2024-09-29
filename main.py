@@ -1,17 +1,19 @@
+import pandas as pd
+import numpy as np
 from sklearn.metrics import mean_absolute_error, f1_score, precision_score, recall_score
 from sklearn.model_selection import GridSearchCV, KFold, cross_val_score, train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from sklearn.metrics import mean_squared_error, r2_score
-import pandas as pd
-import numpy as np
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dense, Dropout
+from sklearn.svm import SVR  # Import SVR from sklearn
 import Preprocessor
 
-# Function for Linear Regression model
-def LinearRegressionModel(df, input_data):
+#################MIXED DATA MODELS####################################################################################################
+# Function for Linear Regression model for Sales data using mixed features
+def LinearRegression_Sales_Model(df, input_data):
     # Include 4 features: 'Postcode', 'Rooms', 'Type', 'Months'
     X = df[['Postcode', 'Rooms', 'Type', 'Months']]  
     y = df['Price']
@@ -47,8 +49,8 @@ def LinearRegressionModel(df, input_data):
     return model
 
 
-# Function to perform hyperparameter tuning with cross-validation for RandomForest
-def RandomForestTunedModel(df, input_data):
+# Function to perform hyperparameter tuning with cross-validation for RandomForest for Sales data using mixed features
+def RandomForestTuned_Sales_Model(df, input_data):
     X = df[['Postcode', 'Rooms', 'Type', 'Months']]  # Include 4 features
     y = df['Price']
 
@@ -88,7 +90,7 @@ def RandomForestTunedModel(df, input_data):
 
 
 # Function to create sequences for LSTM
-def create_sequences(data, seq_length):
+def create_sales_sequences(data, seq_length):
     sequences = []
     labels = []
     for i in range(len(data) - seq_length):
@@ -97,13 +99,13 @@ def create_sequences(data, seq_length):
     return np.array(sequences), np.array(labels)
 
 
-# Function to perform LSTM tuning and prediction
-def LSTM_TimeSeries_Model_Tuned(df, input_data, seq_length=12):
+# Function to perform LSTM tuning and prediction for Sales data using mixed features
+def LSTM_Sales_Model_Tuned(df, input_data, seq_length=12):
     data = df[['Price']].values
     scaler = MinMaxScaler()
     data_scaled = scaler.fit_transform(data)
 
-    X, y = create_sequences(data_scaled, seq_length)
+    X, y = create_sales_sequences(data_scaled, seq_length)
     
     # 70-30 train-test split
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
@@ -147,7 +149,7 @@ def LSTM_TimeSeries_Model_Tuned(df, input_data, seq_length=12):
 
 
 # Main function to run the selected model based on user input
-def run_models(df, model_choice, postcode, rooms, housing_type, months):
+def run_sales_models(df, model_choice, postcode, rooms, housing_type, months):
     # input_data should have 4 features: postcode, rooms, housing_type, months
     input_data = [postcode, rooms, housing_type, months]
 
@@ -155,20 +157,166 @@ def run_models(df, model_choice, postcode, rooms, housing_type, months):
     df['Months'] = months
 
     if model_choice == '1':
-        model = LinearRegressionModel(df, input_data)
+        model = LinearRegression_Sales_Model(df, input_data)
     elif model_choice == '2':
-        model = RandomForestTunedModel(df, input_data)
+        model = RandomForestTuned_Sales_Model(df, input_data)
     elif model_choice == '3':
-        model = LSTM_TimeSeries_Model_Tuned(df, input_data, seq_length=months)
+        model = LSTM_Sales_Model_Tuned(df, input_data, seq_length=months)
     else:
         print("Invalid model choice.")
         return
     
     print(f'Predictions completed for postcode {postcode}, {rooms} rooms, type {housing_type}, for {months} months.')
 
+##############################################END OF MIXED DATA SALES MODELS#################################################################
+
+##############################################TIME SERIES RENTAL MODELS#######################################################################
+# Function for Linear Regression model
+# Function for Linear Regression model
+def LinearRegression_Rent_Model(df, postcode, months_ahead):
+    postcode = int(postcode)
+
+    # Extract time series data for a given postcode
+    time_series_data = df[df['Postcode'] == postcode].iloc[:, 1:]
+
+    print(f"\nTime series data for postcode {postcode}:\n{time_series_data.head()}\n")
+
+    if time_series_data.empty:
+        print(f"No data found for postcode {postcode}")
+        return None
+
+    X = np.array(range(len(time_series_data.columns))).reshape(-1, 1)
+    y = time_series_data.values.flatten()
+
+    if len(X) != len(y):
+        print(f"Inconsistent number of samples: {len(X)} months, but {len(y)} rent prices")
+        return None
+
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+    model = LinearRegression()
+    model.fit(X_train, y_train)
+
+    future_month = len(time_series_data.columns) + months_ahead
+    predicted_price = model.predict([[future_month]])
+
+    print(f'Predicted Rent Price for {postcode} in {months_ahead} months: {predicted_price[0]}')
+
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    print(f'Linear Regression MSE: {mse}, R²: {r2}')
+    
+    return model
+
+# Function for Random Forest model with hyperparameter tuning
+def RandomForest_Rent_Model(df, postcode, months_ahead):
+    postcode = int(postcode)
+
+    time_series_data = df[df['Postcode'] == postcode].iloc[:, 1:]
+
+    print(f"\nTime series data for postcode {postcode}:\n{time_series_data.head()}\n")
+
+    if time_series_data.empty:
+        print(f"No data found for postcode {postcode}")
+        return None
+
+    X = np.array(range(len(time_series_data.columns))).reshape(-1, 1)
+    y = time_series_data.values.flatten()
+
+    if len(X) != len(y):
+        print(f"Inconsistent number of samples: {len(X)} months, but {len(y)} rent prices")
+        return None
+
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+    # Hyperparameter grid for tuning
+    param_grid = {
+        'n_estimators': [50, 100, 200],
+        'max_depth': [10, 20, None],
+        'min_samples_split': [2, 5, 10],
+        'min_samples_leaf': [1, 2, 4],
+        'max_features': ['auto', 'sqrt'],
+        'bootstrap': [True, False]
+    }
+
+    rf = RandomForestRegressor(random_state=42)
+
+    # Perform Grid Search with Cross Validation
+    grid_search = GridSearchCV(estimator=rf, param_grid=param_grid, cv=5, scoring='neg_mean_squared_error', verbose=2, n_jobs=-1)
+    grid_search.fit(X_train, y_train)
+
+    print(f"Best parameters found: {grid_search.best_params_}")
+
+    best_rf = grid_search.best_estimator_
+
+    future_month = len(time_series_data.columns) + months_ahead
+    predicted_price = best_rf.predict([[future_month]])
+
+    print(f'Predicted Rent Price for {postcode} in {months_ahead} months: {predicted_price[0]}')
+
+    y_pred = best_rf.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    print(f'Random Forest MSE: {mse}, R²: {r2}')
+    
+    return best_rf
+
+# Function for SVR model
+def SVR_Rent_Model(df, postcode, months_ahead):
+    postcode = int(postcode)
+
+    time_series_data = df[df['Postcode'] == postcode].iloc[:, 1:]
+
+    print(f"\nTime series data for postcode {postcode}:\n{time_series_data.head()}\n")
+
+    if time_series_data.empty:
+        print(f"No data found for postcode {postcode}")
+        return None
+
+    X = np.array(range(len(time_series_data.columns))).reshape(-1, 1)
+    y = time_series_data.values.flatten()
+
+    if len(X) != len(y):
+        print(f"Inconsistent number of samples: {len(X)} months, but {len(y)} rent prices")
+        return None
+
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+    model = SVR(kernel='rbf', C=100, gamma=0.1, epsilon=0.1)
+    model.fit(X_train, y_train)
+
+    future_month = len(time_series_data.columns) + months_ahead
+    predicted_price = model.predict([[future_month]])
+
+    print(f'Predicted Rent Price for {postcode} in {months_ahead} months: {predicted_price[0]}')
+
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    print(f'SVR MSE: {mse}, R²: {r2}')
+    
+    return model
+
+# Main function to run the selected rental model
+def run_rental_models(df, model_choice, postcode, months_ahead):
+    if model_choice == '1':
+        model = LinearRegression_Rent_Model(df, postcode, months_ahead)
+    elif model_choice == '2':
+        model = RandomForest_Rent_Model(df, postcode, months_ahead)
+    elif model_choice == '3':
+        model = SVR_Rent_Model(df, postcode, months_ahead)
+    else:
+        print("Invalid model choice.")
+        return
+
+    print(f'Predictions completed for postcode {postcode} for {months_ahead} months ahead.')
+
+
+#############################################END OF TIME SERIES RENTAL MODELS####################################################################
 
 # Main execution starts here
-
+#######################################################################################################################################
 # Ask for user input
 user_input = input("\nEnter postcode, number of rooms, Type of housing(h=1,u=2,t=3,f=4), prediction period (months) separated by commas: ").strip()
 
@@ -201,12 +349,13 @@ elif sale_or_rental == '2':
         dataset_path = 'Rent_3BH_Final.csv'
     df = Preprocessor.TimeSeriesPreprocessor(dataset_path)
 
-# Add the 'Months' column to the dataframe to match the expected input for all models
-df['Months'] = months
-
 # Ask the user to choose the model
 print("\nChoose the model for prediction:")
 model_choice = input("Enter 1 for Linear Regression, 2 for Random Forest, 3 for LSTM: ").strip()
 
 # Run the model based on the user's choice
-run_models(df, model_choice, postcode, rooms, housing_type, months)
+if sale_or_rental == '1':
+    run_sales_models(df, model_choice, postcode, rooms, housing_type, months)
+elif sale_or_rental == '2':
+    run_rental_models(df, model_choice, postcode, months)
+
