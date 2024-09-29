@@ -222,12 +222,12 @@ def MixedDataPreprocessing(inputFileName):
     df_clean[numeric_cols] = scaler.fit_transform(df_clean[numeric_cols])
 
     # Step 7: Save the processed data to a new CSV file
-    outputFilename = 'processed_' + inputFileName
+    """outputFilename = 'processed_' + inputFileName
     if os.path.exists(outputFilename):
         os.remove(outputFilename)
     df_clean.to_csv(outputFilename, index=False)
     print(f'Processed data saved to {outputFilename}')
-    
+    """
     #VisualizeData(df_clean)
     return df_clean
 
