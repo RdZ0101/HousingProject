@@ -20,71 +20,91 @@ def VisualizeData(dataframe):
     # Convert categorical columns to numeric if necessary or drop them for the correlation matrix
     numeric_df = dataframe.select_dtypes(include=['float64', 'int64'])
 
-    # Pairplot of the dataset
-    sns.pairplot(dataframe, height=3)  # Increase plot size by adjusting height
-    plt.show()
-
     # Correlation heatmap (use only numeric columns)
-    plt.figure(figsize=(14, 10))  # Increase size for better fit
-    sns.heatmap(numeric_df.corr(), annot=True, cmap='coolwarm')
-    plt.title('Correlation Matrix')
-    plt.show()
-
-    # Average price per postcode
-    plt.figure(figsize=(16, 8))  # Increase width and height for better readability
-    dataframe.groupby('Postcode')['Price'].mean().plot(kind='bar')
-    plt.title('Average Price per Postcode')
-    plt.xlabel('Postcode')
-    plt.ylabel('Average Price')
-    plt.xticks(rotation=90)  # Rotate x-axis labels for better readability
-    plt.show()
-
-    # Average price per method (if applicable)
-    if 'Method' in dataframe.columns:
-        plt.figure(figsize=(12, 6))  # Increase size
-        dataframe.groupby('Method')['Price'].mean().plot(kind='bar')
-        plt.title('Average Price per Method')
-        plt.xlabel('Method')
-        plt.ylabel('Average Price')
-        plt.xticks(rotation=45)  # Rotate x-axis labels slightly
-        plt.show()
     
-    plt.figure(figsize=(10, 6))
-    sns.scatterplot(x=dataframe['Rooms'], y=dataframe['Price'], hue=dataframe['Postcode'], palette='coolwarm')
-    plt.title('Price vs Number of Rooms, Colored by Postcode')
-    plt.xlabel('Number of Rooms')
-    plt.ylabel('Price')
-    plt.show()
+    if numeric_df.empty:
+        print("No numeric data available for correlation matrix.")
+    else:
+        plt.figure(figsize=(14, 10))  # Increase size for better fit
+        sns.heatmap(numeric_df.corr(), annot=True, cmap='coolwarm')
+        plt.title('Correlation Matrix')
+        plt.show()
 
-    plt.figure(figsize=(14, 8))
-    sns.boxplot(x='Postcode', y='Price', data=dataframe)
-    plt.title('Price Distribution by Postcode')
-    plt.xlabel('Postcode')
-    plt.ylabel('Price')
-    plt.xticks(rotation=90)  # Rotate for readability
-    plt.show()
-
-    sns.pairplot(dataframe[['Rooms', 'Postcode', 'Price']], diag_kind='kde', height=3)
-    plt.show()
-
-    plt.figure(figsize=(10, 6))
-    sns.violinplot(x='Rooms', y='Price', data=dataframe)
-    plt.title('Price Distribution by Number of Rooms')
-    plt.xlabel('Number of Rooms')
-    plt.ylabel('Price')
-    plt.show()
-
-
-    plt.figure(figsize=(16, 8))
-    sns.barplot(x='Postcode', y='Price', hue='Rooms', data=dataframe)
-    plt.title('Average Price by Postcode and Number of Rooms')
+    #Average price per postcode (Top 20)
+    plt.figure(figsize=(16, 8))  
+    top_postcodes = dataframe.groupby('Postcode')['Price'].mean().nlargest(20)  # Top 20 postcodes by average price
+    top_postcodes.plot(kind='bar')
+    plt.title('Average Price for Top 20 Postcodes')
     plt.xlabel('Postcode')
     plt.ylabel('Average Price')
     plt.xticks(rotation=90)
     plt.show()
 
+    # Average price per method (if applicable)
+    if 'Method' in dataframe.columns:
+        plt.figure(figsize=(12, 6))  # Increase size
+        method_avg_price = dataframe.groupby('Method')['Price'].mean()
 
+    # mapping back to the original names
+    method_labels = {
+        1: 'Property Sold',
+        2: 'Property Sold Prior',
+        3: 'Property Passed In',
+        4: 'Sold Prior Not Disclosed',
+        5: 'Sold Not Disclosed',
+        6: 'No Bid',
+        7: 'Vendor Bid',
+        8: 'Withdrawn Prior to Auction',
+        9: 'Sold After Auction',
+        10: 'Sold After Auction Price Not Disclosed',
+        11: 'Price Not Available'
+    }
+    
+    # Ensure the mapping from the numerical codes to descriptive labels is applied
+    dataframe['Method'] = dataframe['Method'].map(method_labels)
 
+    # Ensure all method types are included, even if some have no data in the dataset
+    all_methods = pd.Series(list(method_labels.values()))
+
+    # Group by the 'Method' column to calculate the average price for each method
+    method_avg_price = dataframe.groupby('Method')['Price'].mean()
+    
+    # Reindex the grouped data so that all methods appear (fill missing with NaN or 0)
+    method_avg_price = method_avg_price.reindex(all_methods, fill_value=0)
+
+    # Plot the data
+    plt.bar(method_avg_price.index, method_avg_price.values)
+
+    # Set x-axis labels, rotating them to avoid overlap
+    plt.xticks(rotation=45, ha='right')
+
+    # Add labels and title
+    plt.xlabel('Sale Method')
+    plt.ylabel('Average Price')
+    plt.title('Average Price per Sale Method')
+
+    # Ensure layout fits well
+    plt.tight_layout()
+    
+    # Display the plot
+    plt.show()
+    
+    #top 40 postcodes based on the number of entries
+    top_postcodes = dataframe['Postcode'].value_counts().nlargest(40).index
+
+    # Filter the dataframe for these top postcodes
+    filtered_dataframe = dataframe[dataframe['Postcode'].isin(top_postcodes)]
+
+    # Boxplot for Price Distribution by Top 40 Postcodes
+    plt.figure(figsize=(14, 8))
+    sns.boxplot(x='Postcode', y='Price', data=filtered_dataframe)
+    plt.title('Price Distribution by Top 40 Postcodes')
+    plt.xlabel('Postcode')
+    plt.ylabel('Price')
+    plt.xticks(rotation=90)  # Rotate for readability
+    plt.show()
+
+    
 
 def MixedDataPreprocessing(inputFileName):
     """
