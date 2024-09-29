@@ -45,7 +45,7 @@ def LinearRegression_Sales_Model(df, input_data):
     # Predicting the price for the user's input data (now includes 4 features: Postcode, Rooms, Type, Months)
     input_data_scaled = scaler.transform([input_data])
     predicted_price = model.predict(input_data_scaled)
-    print(f"Predicted Price: {predicted_price[0]}")
+    print(f"Predicted Price: {predicted_price[0]} using Linear Regression")
     return model
 
 
@@ -85,7 +85,7 @@ def RandomForestTuned_Sales_Model(df, input_data):
 
     # Predicting the price for the user's input data (now includes 4 features: Postcode, Rooms, Type, Months)
     predicted_price = best_rf.predict([input_data])
-    print(f"Predicted Price: {predicted_price[0]}")
+    print(f"Predicted Price: {predicted_price[0]} using Random Forest")
     return best_rf
 
 
@@ -143,7 +143,7 @@ def LSTM_Sales_Model_Tuned(df, input_data, seq_length=12):
     input_sequence_scaled = scaler.transform(historical_prices.reshape(-1, 1))
     lstm_pred = model.predict(input_sequence_scaled.reshape(1, seq_length, 1))
     predicted_price = scaler.inverse_transform(lstm_pred)
-    print(f"Predicted Price (LSTM): {predicted_price[0][0]}")
+    print(f"Predicted Price (LSTM): {predicted_price[0][0]} using LSTM")
     
     return model
 
@@ -172,7 +172,6 @@ def run_sales_models(df, model_choice, postcode, rooms, housing_type, months):
 
 ##############################################TIME SERIES RENTAL MODELS#######################################################################
 # Function for Linear Regression model
-# Function for Linear Regression model
 def LinearRegression_Rent_Model(df, postcode, months_ahead):
     postcode = int(postcode)
 
@@ -200,7 +199,7 @@ def LinearRegression_Rent_Model(df, postcode, months_ahead):
     future_month = len(time_series_data.columns) + months_ahead
     predicted_price = model.predict([[future_month]])
 
-    print(f'Predicted Rent Price for {postcode} in {months_ahead} months: {predicted_price[0]}')
+    print(f'Predicted Rent Price for {postcode} in {months_ahead} months: {predicted_price[0]} using Linear Regression')
 
     y_pred = model.predict(X_test)
     mse = mean_squared_error(y_test, y_pred)
@@ -253,7 +252,7 @@ def RandomForest_Rent_Model(df, postcode, months_ahead):
     future_month = len(time_series_data.columns) + months_ahead
     predicted_price = best_rf.predict([[future_month]])
 
-    print(f'Predicted Rent Price for {postcode} in {months_ahead} months: {predicted_price[0]}')
+    print(f'Predicted Rent Price for {postcode} in {months_ahead} months: {predicted_price[0]} using Random Forest')
 
     y_pred = best_rf.predict(X_test)
     mse = mean_squared_error(y_test, y_pred)
@@ -289,7 +288,7 @@ def SVR_Rent_Model(df, postcode, months_ahead):
     future_month = len(time_series_data.columns) + months_ahead
     predicted_price = model.predict([[future_month]])
 
-    print(f'Predicted Rent Price for {postcode} in {months_ahead} months: {predicted_price[0]}')
+    print(f'Predicted Rent Price for {postcode} in {months_ahead} months: {predicted_price[0]} using SVR')
 
     y_pred = model.predict(X_test)
     mse = mean_squared_error(y_test, y_pred)
