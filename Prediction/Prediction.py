@@ -6,11 +6,11 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.linear_model import LinearRegression
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
-import preprocess
+from . import preprocess
 import numpy as np
-from Visualization import Visualization
+from .Visualization import Visualization
 
-def run_random_forest(X_train, y_train, X_test, y_test):
+def run_random_forest(X_train, y_train, X_test, y_test, X_scaled, y):
     model = RandomForestRegressor(n_estimators=100, random_state=42)
     rf_scores = cross_val_score(model, X_scaled, y, cv=10, scoring='neg_mean_absolute_error')
     print(f'Average MAE for Random Forest (10-fold CV): {np.abs(np.mean(rf_scores)):.2f}')
@@ -18,7 +18,7 @@ def run_random_forest(X_train, y_train, X_test, y_test):
     y_pred = model.predict(X_test)
     return evaluate_model(y_test, y_pred)
 
-def run_linear_regression(X_train, y_train, X_test, y_test):
+def run_linear_regression(X_train, y_train, X_test, y_test, X_scaled, y):
     model = LinearRegression()
     linear_scores = cross_val_score(model, X_scaled, y, cv=10, scoring='neg_mean_absolute_error')
     print(f'Average MAE for Linear Regression (10-fold CV): {np.abs(np.mean(linear_scores)):.2f}')
@@ -26,7 +26,7 @@ def run_linear_regression(X_train, y_train, X_test, y_test):
     y_pred = model.predict(X_test)
     return evaluate_model(y_test, y_pred)
 
-def run_knn(X_train, y_train, X_test, y_test):
+def run_knn(X_train, y_train, X_test, y_test, X_scaled, y):
     model = KNeighborsRegressor(n_neighbors=5)
     scores = cross_val_score(model, X_scaled, y, cv=10, scoring='neg_mean_absolute_error')
     print(f'Average MAE from 10-fold Cross-Validation: {np.abs(np.mean(scores)):.2f}')
@@ -40,8 +40,8 @@ def evaluate_model(y_test, y_pred):
     r2 = r2_score(y_test, y_pred)
     return {'MAE': mae, 'RMSE': rmse, 'R^2': r2}
 
-if __name__ == "__main__":
-    file_path = "C:\Study\Semester_2_2024\COS30049\Draft\Melbourne_housing_FULL.csv"
+def main():
+    file_path = "Melbourne_housing_FULL.csv"
 
     # Choose preprocessing based on the model
     choice = input("Which model would you like to run? (random_forest/linear_regression/knn): ")
@@ -61,11 +61,11 @@ if __name__ == "__main__":
 
     # Run the selected model
     if choice == "random_forest":
-        metrics = run_random_forest(X_train, y_train, X_test, y_test)
+        metrics = run_random_forest(X_train, y_train, X_test, y_test, X_scaled, y)
     elif choice == "linear_regression":
-        metrics = run_linear_regression(X_train, y_train, X_test, y_test)
+        metrics = run_linear_regression(X_train, y_train, X_test, y_test, X_scaled, y)
     elif choice == "knn":
-        metrics = run_knn(X_train, y_train, X_test, y_test)
+        metrics = run_knn(X_train, y_train, X_test, y_test, X_scaled, y)
     else:
         print("Invalid choice")
         exit()
@@ -75,3 +75,7 @@ if __name__ == "__main__":
     print(f"MAE: {metrics['MAE']}")
     print(f"RMSE: {metrics['RMSE']}")
     print(f"R^2: {metrics['R^2']}")
+
+# This ensures the script can still be run directly
+if __name__ == "__main__":
+    main()

@@ -1,16 +1,13 @@
 import pandas as pd
 import numpy as np
-from sklearn.linear_model import SGDRegressor
-from sklearn.metrics import mean_absolute_error, f1_score, precision_score, recall_score
 from sklearn.model_selection import GridSearchCV, KFold, cross_val_score, train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.preprocessing import StandardScaler, MinMaxScaler
-from sklearn.metrics import mean_squared_error, r2_score
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import LSTM, Dense, Dropout
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 from sklearn.svm import SVR  # Import SVR from sklearn
 import Preprocessor
+import Prediction.Prediction as Prediction
 from datetime import datetime
 
 # Functions to run the time series rental models 
@@ -78,10 +75,9 @@ def LinearRegression_Rent_Model(df, postcode, months_ahead):
     y_pred = y_pred.astype(float)
 
     # Calculate and apply the bias adjustment
-    adjusted_price = predicted_price + bias
-
     bias = np.mean(y_test - y_pred) + (mse + mae)/10  # Calculate the average prediction bias
     adjusted_price = predicted_price + bias  # Apply the bias correction
+    adjusted_price = adjusted_price[0]  # Convert to a scalar value
     print(f'Adjusted Rent Price: {adjusted_price}')
 
 def RandomForest_Rent_Model(df, postcode, months_ahead):
@@ -145,6 +141,7 @@ def RandomForest_Rent_Model(df, postcode, months_ahead):
     
     bias =   (mse + mae) + (mse + mse)%10 # Adjust by the average underprediction
     adjusted_price = predicted_price + bias
+    adjusted_price = adjusted_price[0]  # Convert to a scalar value
     print(f'Adjusted Rent Price: {adjusted_price}')
 
     return best_rf
@@ -255,44 +252,45 @@ def run_rental_models(df, model_choice, postcode, months_ahead):
 #######################################################################################################################################
 
 # Ask for user input
-user_input = input("\nEnter postcode, number of rooms, Type of housing(h=1,u=2,t=3,f=4), prediction period (months) separated by commas: ").strip()
-
-# Split the user input correctly into four variables
-postcode, rooms, housing_type, months = user_input.split(',')
-
-# Convert the variables to appropriate types
-postcode = str(postcode.strip())   # Postcode as a string
-rooms = int(rooms.strip())         # Rooms as an integer
-housing_type = str(housing_type.strip())  # Housing type as a string
-months = int(months.strip())       # Months as an integer
-
-# Ask for Sale or Rental
-sale_or_rental = input("\nPlease enter 1 for Sale, 2 for Rental: ").strip()
-
-# Choose dataset based on Sale or Rental choice and preprocess
-if sale_or_rental == '1':
-    dataset_path = 'Melbourne_housing_FULL.csv'
-    df = Preprocessor.MixedDataPreprocessing(dataset_path)
-elif sale_or_rental == '2':
-    if rooms == 1 and housing_type == '4':
-        dataset_path = 'Rent_1BF_Final.csv'
-    elif rooms == 2 and housing_type == '4':
-        dataset_path = 'Rent_2BF_Final.csv'
-    elif rooms == 3 and housing_type == '4':
-        dataset_path = 'Rent_3BF_Final.csv'
-    elif rooms == 2 and housing_type == '1':
-        dataset_path = 'Rent_2BH_Final.csv'
-    elif rooms == 3 and housing_type == '1':
-        dataset_path = 'Rent_3BH_Final.csv'
-    df = Preprocessor.TimeSeriesPreprocessor(dataset_path)
-
-# Ask the user to choose the model
-print("\nChoose the model for prediction:")
-model_choice = input("Enter 1 for Linear Regression, 2 for Random Forest, 3 for SVR: ").strip()
-
+sale_or_rental = input("Please enter 1 for Sale, 2 for Rental: ").strip()
 # Run the model based on the user's choice
 if sale_or_rental == '1':
-    pass
+    Prediction.main()
 elif sale_or_rental == '2':
+    user_input = input("\nEnter postcode, number of rooms, Type of housing(h=1,u=2,t=3,f=4), prediction period (months) separated by commas: ").strip()
+
+    # Split the user input correctly into four variables
+    postcode, rooms, housing_type, months = user_input.split(',')
+
+    # Convert the variables to appropriate types
+    postcode = str(postcode.strip())   # Postcode as a string
+    rooms = int(rooms.strip())         # Rooms as an integer
+    housing_type = str(housing_type.strip())  # Housing type as a string
+    months = int(months.strip())       # Months as an integer
+
+
+    # Choose dataset based on Sale or Rental choice and preprocess
+    if sale_or_rental == '1':
+        dataset_path = 'Melbourne_housing_FULL.csv'
+        df = Preprocessor.MixedDataPreprocessing(dataset_path)
+    elif sale_or_rental == '2':
+        if rooms == 1 and housing_type == '4':
+            dataset_path = 'Rent_1BF_Final.csv'
+        elif rooms == 2 and housing_type == '4':
+            dataset_path = 'Rent_2BF_Final.csv'
+        elif rooms == 3 and housing_type == '4':
+            dataset_path = 'Rent_3BF_Final.csv'
+        elif rooms == 2 and housing_type == '1':
+            dataset_path = 'Rent_2BH_Final.csv'
+        elif rooms == 3 and housing_type == '1':
+            dataset_path = 'Rent_3BH_Final.csv'
+        elif rooms == 4 and housing_type == '1':
+            dataset_path = 'Rent_4BH_Final.csv'
+        df = Preprocessor.TimeSeriesPreprocessor(dataset_path)
+
+    # Ask the user to choose the model
+    print("\nChoose the model for prediction:")
+    model_choice = input("Enter 1 for Linear Regression, 2 for Random Forest, 3 for SVR: ").strip()
     run_rental_models(df, model_choice, postcode, months)
+
 
