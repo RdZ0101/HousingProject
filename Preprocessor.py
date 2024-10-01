@@ -222,13 +222,13 @@ def MixedDataPreprocessing(inputFileName):
     df_clean[numeric_cols] = scaler.fit_transform(df_clean[numeric_cols])
 
     # Step 7: Save the processed data to a new CSV file
-    outputFilename = 'processed_' + inputFileName
+    """outputFilename = 'processed_' + inputFileName
     if os.path.exists(outputFilename):
         os.remove(outputFilename)
     df_clean.to_csv(outputFilename, index=False)
     print(f'Processed data saved to {outputFilename}')
-    
-    VisualizeData(df_clean)
+    """
+    #VisualizeData(df_clean)
     return df_clean
 
     
@@ -244,60 +244,35 @@ def TimeSeriesPreprocessor(inputFileName):
     Returns:
     pd.DataFrame: The processed dataset.
     """
+    # Load the dataset
     df = pd.read_csv(inputFileName)
-    print(df.head())
-    print(f'Original dataset shape: {df.shape}')
-
-    # get rid of null values
-    df.dropna()
-
-    #drop duplicates if suburb and postcode both are duplicated
+    
+    # Drop duplicates if 'Suburb' and 'Postcode' are both duplicated
     df.drop_duplicates(subset=['Suburb', 'Postcode'], keep='first', inplace=True)
-    # Handle missing values
-    df['Postcode'] = df['Postcode'].fillna(0)  # or drop missing rows: df.dropna(subset=['Postcode'], inplace=True)
 
-    # Convert to integer
+    # Handle missing values in 'Postcode'
+    df['Postcode'] = df['Postcode'].fillna(0)  # Fill missing postcodes with 0
+
+    # Convert 'Postcode' to integer for consistency
     df['Postcode'] = df['Postcode'].astype(int)
 
+    # Remove any unwanted columns
     non_date_cols = ['Suburb', 'Postcode']
-    # Extract the columns that need to be converted to date format
+    
+    # Extract columns that represent rent prices (assumed to be the columns after 'Postcode')
     date_cols = df.columns.difference(non_date_cols)
 
     # Convert the date column names to 'mm-yyyy' format
     new_date_cols = [pd.to_datetime(col, format='%b %Y').strftime('%m-%Y') for col in date_cols]
 
-    # Create a mapping of old to new column names
+    # Create a mapping of old to new column names and rename
     column_mapping = dict(zip(date_cols, new_date_cols))
-
-    # Rename the columns in the DataFrame
     df.rename(columns=column_mapping, inplace=True)
 
-    # Display the updated DataFrame
-    df.head()
+    # Clean up the DataFrame by removing unnecessary columns
+    df_clean = df.drop(columns=['Suburb', 'SellerG', 'Address', 'Regionname', 'Propertycount', 'CouncilArea'], errors='ignore')
 
-    # Save the processed data to a new CSV file. delete the exising file if it exists
-    outputFilename = 'processed_' + inputFileName
-    if os.path.exists(outputFilename):
-        os.remove(outputFilename)
-    df.to_csv(outputFilename, index=False)
-    print(f'Processed data saved to {outputFilename}')
-
-    
-    df_clean = df
-    
-    if 'Suburb' in df_clean.columns:
-        df_clean.drop(['Suburb'], axis=1, inplace=True)
-    if 'Address' in df_clean.columns:
-        df_clean.drop(['Address'], axis=1, inplace=True)
-    if 'SellerG' in df_clean.columns:
-        df_clean.drop(['SellerG'], axis=1, inplace=True)
-    if 'Regionname' in df_clean.columns:
-        df_clean.drop(['Regionname'], axis=1, inplace=True)
-    if 'Propertycount' in df_clean.columns:
-        df_clean.drop(['Propertycount'], axis=1, inplace=True)
-    if 'CouncilArea' in df_clean.columns:
-        df_clean.drop(['CouncilArea'], axis=1, inplace=True)
-    
     print(df_clean.head())
-    VisualizeData(df_clean)
+    
+    #VisualizeData(df_clean)
     return df_clean
