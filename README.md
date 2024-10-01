@@ -9,14 +9,30 @@ Ensure the following Python libraries are installed:
 pandas
 numpy
 scikit-learn
-datetime
+matplotlib
+seaborn
+joblib
+
+You can install them via:
+pip install pandas numpy scikit-learn matplotlib seaborn joblib
 
 
 File Structure
-main.py: Script for rental price predictions based on user inputs like postcode, number of rooms, housing type, and prediction period.
-Preprocessor.py: Handles data preprocessing such as data cleaning, normalization, and outlier detection.
-Prediction.py: Contains models for sales price prediction using techniques like Random Forest, Linear Regression, and KNN.
-Datasets: CSV files for both rental and sales data, dynamically selected based on the user input.
+HousingProject
+{
+  Prediction
+  {
+  Prediction.py
+  PredictionAnalysis.py
+  Preprocess.py
+  UserInput.py
+  Visualization.py
+  }
+  main.py: Script for rental price predictions based on user inputs like postcode, number of rooms, housing type, and prediction period.
+  Preprocessor.py: Handles data preprocessing such as data cleaning, normalization, and outlier detection.
+  Prediction.py: Contains models for sales price prediction using techniques like Random Forest, Linear Regression, and KNN.
+  Datasets: CSV files for both rental and sales data, dynamically selected based on the user input.
+}
 How It Works
 1. main.py (Rental Price Prediction)
 The script performs the following:
