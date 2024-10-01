@@ -39,10 +39,10 @@ if __name__ == "__main__":
 
     if choice == "random_forest":
         # No outlier handling or normalization for Random Forest
-        X, y, z = preprocess.preprocess_data(file_path, handle_outliers=False, normalize=False)
+        X, y = preprocess.preprocess_data(file_path, handle_outliers=False, normalize=False)
     else:
         # Handle outliers and normalize for Linear Regression and KNN
-        X, y, z = preprocess.preprocess_data(file_path, handle_outliers=True, normalize=True)
+        X, y = preprocess.preprocess_data(file_path, handle_outliers=True, normalize=True)
 
     # Split the data
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
@@ -63,4 +63,3 @@ if __name__ == "__main__":
     print(f"MAE: {metrics['MAE']}")
     print(f"RMSE: {metrics['RMSE']}")
     print(f"R^2: {metrics['R^2']}")
-    Visualization(z)
