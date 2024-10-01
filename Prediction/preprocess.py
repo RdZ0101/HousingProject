@@ -83,9 +83,9 @@ def preprocess_data(file_path, handle_outliers=True, normalize=True):
     data2_cleaned = log_transform(data2_cleaned, 'Price')
     data2_cleaned = percentile_capping(data2_cleaned, 'Price')
 
-    data2_cleaned.to_csv('test.csv')
+    #data2_cleaned.to_csv('test.csv')
 
-    Visualization(data2_cleaned)
+    #Visualization(data2_cleaned)
 
     return data_cleaned[selected_features], data_cleaned['Price']
 

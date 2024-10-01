@@ -42,8 +42,7 @@
               "RelativeToolTip": "UserInput.py",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAAB0AAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
-              "WhenOpened": "2024-09-30T21:37:54.266Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-30T21:37:54.266Z"
             },
             {
               "$type": "Document",
@@ -55,8 +54,7 @@
               "RelativeToolTip": "PredictionAnalysis.py",
               "ViewState": "AgIAADAAAAAAAAAAAAAAAHoAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
-              "WhenOpened": "2024-09-30T21:15:23.909Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-30T21:15:23.909Z"
             },
             {
               "$type": "Document",
@@ -68,8 +66,7 @@
               "RelativeToolTip": "Visualization.py",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAA4AAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
-              "WhenOpened": "2024-09-30T20:21:47.113Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-30T20:21:47.113Z"
             },
             {
               "$type": "Document",
@@ -79,7 +76,7 @@
               "RelativeDocumentMoniker": "preprocess.py",
               "ToolTip": "C:\\Users\\promi\\source\\repos\\Prediction\\preprocess.py",
               "RelativeToolTip": "preprocess.py",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAACgAAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAAAFcAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
               "WhenOpened": "2024-09-30T20:00:29.561Z",
               "EditorCaption": ""
@@ -92,7 +89,7 @@
               "RelativeDocumentMoniker": "Prediction.py",
               "ToolTip": "C:\\Users\\promi\\source\\repos\\Prediction\\Prediction.py",
               "RelativeToolTip": "Prediction.py",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAwAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
               "WhenOpened": "2024-09-30T20:00:13.169Z",
               "EditorCaption": ""
