@@ -1,3 +1,4 @@
+import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 import preprocess
@@ -18,9 +19,9 @@ def Visualization(file):
     price_distribution_top_types = data_cleaned[data_cleaned['Type'].isin(top_types)]
 
     plt.figure(figsize=(10, 6))
-    sns.boxplot(x='Type', y='Price', data=price_distribution_top_types)
+    sns.boxplot(x='Type', y='Price_log', data=price_distribution_top_types)
     plt.title('Price Distribution Across Top Property Types')
-    plt.ylabel('Price')
+    plt.ylabel('Price_log')
     plt.xlabel('Property Type')
     plt.show()
 
