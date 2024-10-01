@@ -204,8 +204,13 @@ def LinearRegression_Rent_Model(df, postcode, months_ahead):
     y_pred = model.predict(X_test)
     mse = mean_squared_error(y_test, y_pred)
     r2 = r2_score(y_test, y_pred)
-    print(f'Linear Regression MSE: {mse}, R²: {r2}')
-    
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = np.sqrt(mse)
+    print(f'Linear regression MSE: {mse}, R²: {r2}, MAE: {mae}, RMSE: {rmse}')
+    bias =   (mse + mae) + (mse + mse)%10 # Adjust by the average underprediction
+    adjusted_price = predicted_price + bias
+    print(f'Adjusted Rent Price: {adjusted_price}')
+
     return model
 
 # Function for Random Forest model with hyperparameter tuning
@@ -257,8 +262,14 @@ def RandomForest_Rent_Model(df, postcode, months_ahead):
     y_pred = best_rf.predict(X_test)
     mse = mean_squared_error(y_test, y_pred)
     r2 = r2_score(y_test, y_pred)
-    print(f'Random Forest MSE: {mse}, R²: {r2}')
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = np.sqrt(mse)
+    print(f'Random Forest MSE: {mse}, R²: {r2}, MAE: {mae}, RMSE: {rmse}')
     
+    bias =   (mse + mae) + (mse + mse)%10 # Adjust by the average underprediction
+    adjusted_price = predicted_price + bias
+    print(f'Adjusted Rent Price: {adjusted_price}')
+
     return best_rf
 
 # Function for SVR model
@@ -293,8 +304,13 @@ def SVR_Rent_Model(df, postcode, months_ahead):
     y_pred = model.predict(X_test)
     mse = mean_squared_error(y_test, y_pred)
     r2 = r2_score(y_test, y_pred)
-    print(f'SVR MSE: {mse}, R²: {r2}')
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = np.sqrt(mse)
+    print(f'SVR MSE: {mse}, R²: {r2}, MAE: {mae}, RMSE: {rmse}')
     
+    bias =   (mse + mae) + (mse + mse)%10 # Adjust by the average underprediction
+    adjusted_price = predicted_price + bias
+    print(f'Adjusted Rent Price: {adjusted_price}')
     return model
 
 # Main function to run the selected rental model
