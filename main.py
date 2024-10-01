@@ -10,6 +10,8 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dense, Dropout
 from sklearn.svm import SVR  # Import SVR from sklearn
 import Preprocessor
+from datetime import datetime
+
 
 #################MIXED DATA MODELS####################################################################################################
 # Function for Linear Regression model for Sales data using mixed features
@@ -178,35 +180,47 @@ def LinearRegression_Rent_Model(df, postcode, months_ahead):
     # Extract time series data for a given postcode
     time_series_data = df[df['Postcode'] == postcode].iloc[:, 1:]
 
-    print(f"\nTime series data for postcode {postcode}:\n{time_series_data.head()}\n")
-
     if time_series_data.empty:
         print(f"No data found for postcode {postcode}")
         return None
 
+    # Extract the last date in the dataset
+    last_month_col = time_series_data.columns[-1]
+    last_month_date = datetime.strptime(last_month_col, '%m-%Y')
+
+    # Calculate the current date
+    current_date = datetime.now()
+
+    # Find how many months ahead we are from the last recorded data
+    months_since_last_record = (current_date.year - last_month_date.year) * 12 + current_date.month - last_month_date.month
+    
+    # Adjust future month prediction based on current date
+    future_month = len(time_series_data.columns) + months_ahead + months_since_last_record
+    
+    # Proceed with prediction logic
     X = np.array(range(len(time_series_data.columns))).reshape(-1, 1)
     y = time_series_data.values.flatten()
-
-    if len(X) != len(y):
-        print(f"Inconsistent number of samples: {len(X)} months, but {len(y)} rent prices")
-        return None
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
     model = LinearRegression()
     model.fit(X_train, y_train)
 
-    future_month = len(time_series_data.columns) + months_ahead
     predicted_price = model.predict([[future_month]])
-
     print(f'Predicted Rent Price for {postcode} in {months_ahead} months: {predicted_price[0]} using Linear Regression')
-
+    
     y_pred = model.predict(X_test)
     mse = mean_squared_error(y_test, y_pred)
     r2 = r2_score(y_test, y_pred)
-    print(f'Linear Regression MSE: {mse}, R²: {r2}')
-    
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = np.sqrt(mse)
+    print(f'Linear regression MSE: {mse}, R²: {r2}, MAE: {mae}, RMSE: {rmse}')
+    bias =   (mse + mae) + (mse + mse)%10 # Adjust by the average underprediction
+    adjusted_price = predicted_price + bias
+    print(f'Adjusted Rent Price: {adjusted_price}')
+
     return model
+
 
 # Function for Random Forest model with hyperparameter tuning
 def RandomForest_Rent_Model(df, postcode, months_ahead):
@@ -239,17 +253,24 @@ def RandomForest_Rent_Model(df, postcode, months_ahead):
         'bootstrap': [True, False]
     }
 
-    rf = RandomForestRegressor(random_state=42)
+    rf = RandomForestRegressor(n_estimators=500, max_depth=50, min_samples_split=2, random_state=42)
 
     # Perform Grid Search with Cross Validation
     grid_search = GridSearchCV(estimator=rf, param_grid=param_grid, cv=5, scoring='neg_mean_squared_error', verbose=2, n_jobs=-1)
     grid_search.fit(X_train, y_train)
 
     print(f"Best parameters found: {grid_search.best_params_}")
-
+    
     best_rf = grid_search.best_estimator_
 
-    future_month = len(time_series_data.columns) + months_ahead
+    # Calculate months since the last recorded date
+    last_month_col = time_series_data.columns[-1]
+    last_month_date = datetime.strptime(last_month_col, '%m-%Y')
+    current_date = datetime.now()
+    months_since_last_record = (current_date.year - last_month_date.year) * 12 + current_date.month - last_month_date.month
+
+    # Adjust future month prediction
+    future_month = len(time_series_data.columns) + months_ahead + months_since_last_record
     predicted_price = best_rf.predict([[future_month]])
 
     print(f'Predicted Rent Price for {postcode} in {months_ahead} months: {predicted_price[0]} using Random Forest')
@@ -257,8 +278,14 @@ def RandomForest_Rent_Model(df, postcode, months_ahead):
     y_pred = best_rf.predict(X_test)
     mse = mean_squared_error(y_test, y_pred)
     r2 = r2_score(y_test, y_pred)
-    print(f'Random Forest MSE: {mse}, R²: {r2}')
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = np.sqrt(mse)
+    print(f'Random Forest MSE: {mse}, R²: {r2}, MAE: {mae}, RMSE: {rmse}')
     
+    bias =   (mse + mae) + (mse + mse)%10 # Adjust by the average underprediction
+    adjusted_price = predicted_price + bias
+    print(f'Adjusted Rent Price: {adjusted_price}')
+
     return best_rf
 
 # Function for SVR model
@@ -285,7 +312,14 @@ def SVR_Rent_Model(df, postcode, months_ahead):
     model = SVR(kernel='rbf', C=100, gamma=0.1, epsilon=0.1)
     model.fit(X_train, y_train)
 
-    future_month = len(time_series_data.columns) + months_ahead
+    # Calculate months since the last recorded date
+    last_month_col = time_series_data.columns[-1]
+    last_month_date = datetime.strptime(last_month_col, '%m-%Y')
+    current_date = datetime.now()
+    months_since_last_record = (current_date.year - last_month_date.year) * 12 + current_date.month - last_month_date.month
+
+    # Adjust future month prediction
+    future_month = len(time_series_data.columns) + months_ahead + months_since_last_record
     predicted_price = model.predict([[future_month]])
 
     print(f'Predicted Rent Price for {postcode} in {months_ahead} months: {predicted_price[0]} using SVR')
@@ -293,9 +327,15 @@ def SVR_Rent_Model(df, postcode, months_ahead):
     y_pred = model.predict(X_test)
     mse = mean_squared_error(y_test, y_pred)
     r2 = r2_score(y_test, y_pred)
-    print(f'SVR MSE: {mse}, R²: {r2}')
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = np.sqrt(mse)
+    print(f'SVR MSE: {mse}, R²: {r2}, MAE: {mae}, RMSE: {rmse}')
     
+    bias =   (mse + mae) + (mse + mse)%10 # Adjust by the average underprediction
+    adjusted_price = predicted_price + bias
+    print(f'Adjusted Rent Price: {adjusted_price}')
     return model
+
 
 # Main function to run the selected rental model
 def run_rental_models(df, model_choice, postcode, months_ahead):
