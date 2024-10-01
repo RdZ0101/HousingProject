@@ -33,6 +33,12 @@ HousingProject
   Prediction.py: Contains models for sales price prediction using techniques like Random Forest, Linear Regression, and KNN.
   Datasets: CSV files for both rental and sales data, dynamically selected based on the user input.
 }
+
+Prerequisits:
+* The data source in PredictionAnalysis.py needs to be changed to your local directory local file is locate .
+* The PredictionAnalysis.py script needs to be run first in order to create the models. or else running the main.py will not work.
+* Delete the R^2 on 127 so that VSCode does not throw an error (If using VSCode)
+  
 How It Works
 1. main.py (Rental Price Prediction)
 The script performs the following:
