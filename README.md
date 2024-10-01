@@ -37,11 +37,15 @@ HousingProject
 Prerequisits:
 * The data source in PredictionAnalysis.py needs to be changed to your local directory local file is locate .
 * The PredictionAnalysis.py script needs to be run first in order to create the models. or else running the main.py will not work.
-* Delete the R^2 on 127 so that VSCode does not throw an error (If using VSCode)
+* Delete the R^2 on line 127 of PredictionAnalysis.py so that VSCode does not throw an error (If using VSCode)
   
 How It Works
-1. main.py (Rental Price Prediction)
+1. main.py
 The script performs the following:
+
+User Input: Collects 1 as input for Sales Prediction and 2 as input for Rent Prediction
+
+For Rent Prediction:
 
 User Input: Collects postcode, number of rooms, housing type (house, flat, unit), and months ahead for prediction.
 
@@ -55,13 +59,16 @@ The script predicts the rent price for the specified future period and outputs:
 Predicted rent price
 Model performance metrics (MSE, MAE, R², RMSE)
 Bias-adjusted rent price
-2. Prediction.py (Sales Price Prediction)
-The Prediction.py script is dedicated to sales price prediction using the following models:
+
+2. UserInput.py (Sales Price Prediction)
+The UserInput.py script is dedicated to sales price prediction using the following models:
 
 Random Forest
 Linear Regression
 K-Nearest Neighbors (KNN)
 It uses a different dataset (Melbourne_housing_FULL.csv) for sales data and evaluates models using cross-validation. Users are prompted to select a model, which is trained and evaluated using metrics such as MAE, RMSE, and R².
+
+User Input: Collects postcode, number of rooms, housing type (house, flat, unit), and landsize for prediction.
 
 Example Flow:
 User selects a model (e.g., "random_forest").
