@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.preprocessing import LabelEncoder, MinMaxScaler
 import numpy as np
 
-from .Visualization import Visualization
+from Visualization import Visualization
 
 
 # Function to preprocess data
