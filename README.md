@@ -28,15 +28,14 @@ Model Selection: Users choose from three machine learning models:
 
 1 for Linear Regression 2 for Random Forest 3 for SVR The script predicts the rent price for the specified future period and outputs:
 
-Predicted rent price Model performance metrics (MSE, MAE, R², RMSE) Bias-adjusted rent price 2. Prediction.py (Sales Price Prediction) The Prediction.py script is dedicated to sales price prediction using the following models:
+Predicted rent price Model performance metrics (MSE, MAE, R², RMSE) Bias-adjusted rent price 2. UserInput.py (Sales Price Prediction) The UserInput.py script is dedicated to sales price prediction based on trained models from PredictionAnalysis.py using the following models:
 
-Random Forest Linear Regression K-Nearest Neighbors (KNN) It uses a different dataset (Melbourne_housing_FULL.csv) for sales data and evaluates models using cross-validation. Users are prompted to select a model, which is trained and evaluated using metrics such as MAE, RMSE, and R².
+Random Forest Linear Regression K-Nearest Neighbors (KNN) It uses a different dataset (Melbourne_housing_FULL.csv) for sales data and evaluates models using cross-validation. Users are prompted to input Postcode, Number of rooms, House type and Landsize. A prediction will be given based on Random Forest model. For metrics it is requested to run the Prediction.py file.
 
-Example Flow: User selects a model (e.g., "random_forest"). The script preprocesses the data, handles outliers, applies normalization (for certain models), and splits the dataset. The selected model is trained and evaluated on the sales data. Model Evaluation Metrics MAE: Mean Absolute Error RMSE: Root Mean Squared Error R²: Coefficient of determination Both rental and sales models use these metrics to assess prediction accuracy.
-
+Example Flow: Run PredictionAnalysis.py to train models and save them. Run main.py User input 1 for Sales prediction. Then user input Postcode, Number of rooms, House type and Landsize. A prediction will be given based on Random Forest model. For metrics it is requested to run the Prediction.py file.
 Usage Running main.py (Rental Prediction) Follow the prompts to:
 
-Select Sale or Rental options. Input the required details (postcode, rooms, housing type, months ahead). Choose a model for rent prediction.
+Select Sale or Rental options. Input the required details (postcode, rooms, housing type, landsize(optional)). Choose a model for rent prediction.
 
 Running Prediction.py (Sales Prediction) You will be prompted to select a model for sales price prediction, and the script will output the evaluation metrics for the chosen model.
 
