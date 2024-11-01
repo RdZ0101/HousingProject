@@ -12,21 +12,11 @@ You can install them via: pip install pandas numpy scikit-learn matplotlib seabo
 
 File Structure HousingProject { Prediction { Prediction.py PredictionAnalysis.py Preprocess.py UserInput.py Visualization.py main.py: Asks for Sales or Rent prediction. If Sales is selected, calls function in a different script. Script for rental price predictions based on user inputs like postcode, number of rooms, housing type, and prediction period. Preprocessor.py: Handles data preprocessing such as data cleaning, normalization, and outlier detection. Prediction.py: Contains models for sales price prediction using techniques like Random Forest, Linear Regression, and KNN. Datasets: CSV files for both rental and sales data, dynamically selected based on the user input. }
 
-Prerequisits:
-
-The PredictionAnalysis.py script needs to be run first in order to create and train the models. Or else if Sales prediction is selected in main.py, it will not run as UserInput.py will not be able to locate trained models.
-
-How It Works
-
-main.py
-Will ask whether user wants Sales Prediction (user input = 1) or Rental Prediction (user input = 2)
-
-(Rental Price Prediction) The script performs the following:
+Prerequisits
 User Input: Collects postcode, number of rooms, housing type (house, flat, unit), and months ahead for prediction.
 
 Model Selection: Users choose from three machine learning models:
 
-1 for Linear Regression 2 for Random Forest 3 for SVR The script predicts the rent price for the specified future period and outputs:
 
 Predicted rent price Model performance metrics (MSE, MAE, R², RMSE) Bias-adjusted rent price 2. UserInput.py (Sales Price Prediction) The UserInput.py script is dedicated to sales price prediction based on trained models from PredictionAnalysis.py using the following models:
 
