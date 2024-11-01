@@ -1,7 +1,7 @@
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
-from . import preprocess
+import preprocess
 
 
 # 1. Average Price vs. Number of Rooms
