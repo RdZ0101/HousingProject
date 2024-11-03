@@ -8,7 +8,7 @@ function RentPred() {
     const [suggestions, setSuggestions] = useState([]);
     const [numRooms, setNumRooms] = useState('');
     const [houseType, setHouseType] = useState('');
-    const [rentalPeriod, setRentalPeriod] = useState(''); // New state for rental period
+    const [rentalPeriod, setRentalPeriod] = useState('');
 
     const handleSuburbChange = async (e) => {
         const userInput = e.target.value;
@@ -25,7 +25,7 @@ function RentPred() {
 
     // Handler to ensure rentalPeriod stays non-negative
     const handleRentalPeriodChange = (e) => {
-        const value = Math.max(1, parseInt(e.target.value) || 1); // Ensures minimum value of 1
+        const value = Math.max(1, parseInt(e.target.value) || 1);
         setRentalPeriod(value);
     };
 
@@ -34,7 +34,6 @@ function RentPred() {
         const selectedType = e.target.value;
         setHouseType(selectedType);
         
-        // Reset numRooms if it is not a valid option for the selected house type
         if ((selectedType === 'Flat' && !['1', '2', '3'].includes(numRooms)) || 
             (selectedType === 'House' && !['2', '3', '4'].includes(numRooms))) {
             setNumRooms('');
@@ -51,6 +50,7 @@ function RentPred() {
         return [];
     };
 
+<<<<<<< HEAD
     /*
     const rentPredictionRequest = async () => {
         if (!suburb || !numRooms || !houseType || !rentalPeriod) {
@@ -81,6 +81,38 @@ function RentPred() {
 
 
 
+=======
+    // Function to send the rent prediction request
+    const rentPredictionRequest = async () => {
+        if (!suburb || !houseType || !numRooms || !rentalPeriod) {
+            alert('Please fill in all fields');
+            return;
+        }
+
+        const requestData = {
+            suburb: suburb,
+            numRooms: parseInt(numRooms),
+            houseType: houseType,
+            rentalPeriod: parseInt(rentalPeriod)
+        };
+
+        try {
+            const response = await fetch("http://0.0.0.0:8000/predict_rent", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(requestData)
+            });
+
+            const data = await response.json();
+            console.log("Predicted Rent:", data.predicted_price);
+            // Handle the predicted price (e.g., display it on the page)
+        } catch (error) {
+            console.error("Error fetching prediction:", error);
+        }
+    };
+>>>>>>> 42f15d95aa5510390181c2adb83266e93193aade
 
     return (
         <div className="sales-prediction-container">
@@ -144,7 +176,7 @@ function RentPred() {
                 </select>
             </label>
 
-            {/* Time Input */}
+            {/* Rental Period Input */}
             <label className="input-label">
                 I want to see the rental price in: 
                 <input 
@@ -153,14 +185,12 @@ function RentPred() {
                     onChange={handleRentalPeriodChange}
                     placeholder="Enter months"
                     className="input-field"
-                    min="1" // Prevents values less than 1 in most browsers
+                    min="1"
                 />
             </label>
 
-            {/* Button to Navigate to Generated Rent Prediction */}
-            <Link to="/GeneratedRentPredictions">
-                <button className="generate-button">Generate Rent Prediction</button>
-            </Link>
+            {/* Button to Generate Rent Prediction */}
+            <button className="generate-button" onClick={rentPredictionRequest}>Generate Rent Prediction</button>
         </div>
     );
 }
