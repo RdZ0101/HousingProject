@@ -127,21 +127,22 @@ def TimeSeriesPreprocessor(inputFileName):
     df['Postcode'] = df['Postcode'].astype(int)
 
     # Remove any unwanted columns
-    non_date_cols = ['Postcode']
+    non_date_cols = ['Suburb', 'Postcode']
     
     # Extract columns that represent rent prices (assumed to be the columns after 'Postcode')
     date_cols = df.columns.difference(non_date_cols)
 
     # Convert the date column names to 'mm-yyyy' format
-    new_date_cols = [pd.to_datetime(col, format='%m-%Y').strftime('%m-%Y') for col in date_cols]
+    new_date_cols = [pd.to_datetime(col, format='%b %Y').strftime('%m-%Y') for col in date_cols]
 
     # Create a mapping of old to new column names and rename
     column_mapping = dict(zip(date_cols, new_date_cols))
     df.rename(columns=column_mapping, inplace=True)
 
     # Clean up the DataFrame by removing unnecessary columns
-    df_clean = df
-    #print(df_clean.head())
+    df_clean = df.drop(columns=['Suburb', 'SellerG', 'Address', 'Regionname', 'Propertycount', 'CouncilArea'], errors='ignore')
+
+    print(df_clean.head())
     ''' 
     outputFilename = 'processed_' + inputFileName
     if os.path.exists(outputFilename):
