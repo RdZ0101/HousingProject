@@ -1,26 +1,34 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\promi\\source\\repos\\Prediction\\",
+  "WorkspaceRootPath": "C:\\Study\\Semester_2_2024\\COS30049\\Prediction\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A8EF57C3-92BD-4674-8B76-3D25F555BC81}|Prediction.pyproj|C:\\Users\\promi\\source\\repos\\Prediction\\Prediction.py||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A8EF57C3-92BD-4674-8B76-3D25F555BC81}|Prediction.pyproj|solutionrelative:Prediction.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{A8EF57C3-92BD-4674-8B76-3D25F555BC81}|Prediction.pyproj|C:\\Study\\Semester_2_2024\\COS30049\\Prediction\\UserInput.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A8EF57C3-92BD-4674-8B76-3D25F555BC81}|Prediction.pyproj|solutionrelative:UserInput.py||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A8EF57C3-92BD-4674-8B76-3D25F555BC81}|Prediction.pyproj|C:\\Users\\promi\\source\\repos\\Prediction\\preprocess.py||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A8EF57C3-92BD-4674-8B76-3D25F555BC81}|Prediction.pyproj|solutionrelative:preprocess.py||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A8EF57C3-92BD-4674-8B76-3D25F555BC81}|Prediction.pyproj|C:\\Users\\promi\\source\\repos\\Prediction\\Visualization.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "AbsoluteMoniker": "D:0:0:{A8EF57C3-92BD-4674-8B76-3D25F555BC81}|Prediction.pyproj|C:\\Study\\Semester_2_2024\\COS30049\\Prediction\\Visualization.py||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{A8EF57C3-92BD-4674-8B76-3D25F555BC81}|Prediction.pyproj|solutionrelative:Visualization.py||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A8EF57C3-92BD-4674-8B76-3D25F555BC81}|Prediction.pyproj|C:\\Users\\promi\\source\\repos\\Prediction\\PredictionAnalysis.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "AbsoluteMoniker": "D:0:0:{A8EF57C3-92BD-4674-8B76-3D25F555BC81}|Prediction.pyproj|C:\\Study\\Semester_2_2024\\COS30049\\Prediction\\PredictionAnalysis.py||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{A8EF57C3-92BD-4674-8B76-3D25F555BC81}|Prediction.pyproj|solutionrelative:PredictionAnalysis.py||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A8EF57C3-92BD-4674-8B76-3D25F555BC81}|Prediction.pyproj|C:\\Users\\promi\\source\\repos\\Prediction\\UserInput.py||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A8EF57C3-92BD-4674-8B76-3D25F555BC81}|Prediction.pyproj|solutionrelative:UserInput.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{A8EF57C3-92BD-4674-8B76-3D25F555BC81}|Prediction.pyproj|C:\\Study\\Semester_2_2024\\COS30049\\Prediction\\preprocess.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A8EF57C3-92BD-4674-8B76-3D25F555BC81}|Prediction.pyproj|solutionrelative:preprocess.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8EF57C3-92BD-4674-8B76-3D25F555BC81}|Prediction.pyproj|C:\\Study\\Semester_2_2024\\COS30049\\Prediction\\Prediction.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A8EF57C3-92BD-4674-8B76-3D25F555BC81}|Prediction.pyproj|solutionrelative:Prediction.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8EF57C3-92BD-4674-8B76-3D25F555BC81}|Prediction.pyproj|C:\\Study\\Semester_2_2024\\COS30049\\Prediction\\main.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A8EF57C3-92BD-4674-8B76-3D25F555BC81}|Prediction.pyproj|solutionrelative:main.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8EF57C3-92BD-4674-8B76-3D25F555BC81}|Prediction.pyproj|C:\\Study\\Semester_2_2024\\COS30049\\Prediction\\Preprocessor.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A8EF57C3-92BD-4674-8B76-3D25F555BC81}|Prediction.pyproj|solutionrelative:Preprocessor.py||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,69 +38,92 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "UserInput.py",
-              "DocumentMoniker": "C:\\Users\\promi\\source\\repos\\Prediction\\UserInput.py",
-              "RelativeDocumentMoniker": "UserInput.py",
-              "ToolTip": "C:\\Users\\promi\\source\\repos\\Prediction\\UserInput.py",
-              "RelativeToolTip": "UserInput.py",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAB0AAAAOAAAAAAAAAA==",
+              "DocumentIndex": 6,
+              "Title": "Preprocessor.py",
+              "DocumentMoniker": "C:\\Study\\Semester_2_2024\\COS30049\\Prediction\\Preprocessor.py",
+              "RelativeDocumentMoniker": "Preprocessor.py",
+              "ToolTip": "C:\\Study\\Semester_2_2024\\COS30049\\Prediction\\Preprocessor.py",
+              "RelativeToolTip": "Preprocessor.py",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
-              "WhenOpened": "2024-09-30T21:37:54.266Z"
+              "WhenOpened": "2024-10-01T13:59:23.263Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
+              "Title": "main.py",
+              "DocumentMoniker": "C:\\Study\\Semester_2_2024\\COS30049\\Prediction\\main.py",
+              "RelativeDocumentMoniker": "main.py",
+              "ToolTip": "C:\\Study\\Semester_2_2024\\COS30049\\Prediction\\main.py",
+              "RelativeToolTip": "main.py",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2024-10-01T13:34:12.233Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UserInput.py",
+              "DocumentMoniker": "C:\\Study\\Semester_2_2024\\COS30049\\Prediction\\UserInput.py",
+              "RelativeDocumentMoniker": "UserInput.py",
+              "ToolTip": "C:\\Study\\Semester_2_2024\\COS30049\\Prediction\\UserInput.py",
+              "RelativeToolTip": "UserInput.py",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2024-09-30T21:37:54.266Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "PredictionAnalysis.py",
-              "DocumentMoniker": "C:\\Users\\promi\\source\\repos\\Prediction\\PredictionAnalysis.py",
+              "DocumentMoniker": "C:\\Study\\Semester_2_2024\\COS30049\\Prediction\\PredictionAnalysis.py",
               "RelativeDocumentMoniker": "PredictionAnalysis.py",
-              "ToolTip": "C:\\Users\\promi\\source\\repos\\Prediction\\PredictionAnalysis.py",
+              "ToolTip": "C:\\Study\\Semester_2_2024\\COS30049\\Prediction\\PredictionAnalysis.py",
               "RelativeToolTip": "PredictionAnalysis.py",
-              "ViewState": "AgIAADAAAAAAAAAAAAAAAHoAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAAFIAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
               "WhenOpened": "2024-09-30T21:15:23.909Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Visualization.py",
-              "DocumentMoniker": "C:\\Users\\promi\\source\\repos\\Prediction\\Visualization.py",
+              "DocumentMoniker": "C:\\Study\\Semester_2_2024\\COS30049\\Prediction\\Visualization.py",
               "RelativeDocumentMoniker": "Visualization.py",
-              "ToolTip": "C:\\Users\\promi\\source\\repos\\Prediction\\Visualization.py",
+              "ToolTip": "C:\\Study\\Semester_2_2024\\COS30049\\Prediction\\Visualization.py",
               "RelativeToolTip": "Visualization.py",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA4AAAAOAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABgAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
               "WhenOpened": "2024-09-30T20:21:47.113Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "preprocess.py",
-              "DocumentMoniker": "C:\\Users\\promi\\source\\repos\\Prediction\\preprocess.py",
+              "DocumentMoniker": "C:\\Study\\Semester_2_2024\\COS30049\\Prediction\\preprocess.py",
               "RelativeDocumentMoniker": "preprocess.py",
-              "ToolTip": "C:\\Users\\promi\\source\\repos\\Prediction\\preprocess.py",
-              "RelativeToolTip": "preprocess.py",
-              "ViewState": "AgIAAEUAAAAAAAAAAAAAAFcAAAAhAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\promi\\Downloads\\HousingProject-main\\HousingProject-main\\Prediction\\preprocess.py*",
+              "RelativeToolTip": "..\\..\\..\\..\\Users\\promi\\Downloads\\HousingProject-main\\HousingProject-main\\Prediction\\preprocess.py*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFgAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
-              "WhenOpened": "2024-09-30T20:00:29.561Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-30T20:00:29.561Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "Prediction.py",
-              "DocumentMoniker": "C:\\Users\\promi\\source\\repos\\Prediction\\Prediction.py",
+              "DocumentMoniker": "C:\\Study\\Semester_2_2024\\COS30049\\Prediction\\Prediction.py",
               "RelativeDocumentMoniker": "Prediction.py",
-              "ToolTip": "C:\\Users\\promi\\source\\repos\\Prediction\\Prediction.py",
+              "ToolTip": "C:\\Study\\Semester_2_2024\\COS30049\\Prediction\\Prediction.py",
               "RelativeToolTip": "Prediction.py",
-              "ViewState": "AgIAAEUAAAAAAAAAAAAAABAAAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAAAkAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
-              "WhenOpened": "2024-09-30T20:00:13.169Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-30T20:00:13.169Z"
             }
           ]
         }
