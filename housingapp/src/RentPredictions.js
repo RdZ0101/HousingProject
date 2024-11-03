@@ -50,38 +50,6 @@ function RentPred() {
         return [];
     };
 
-<<<<<<< HEAD
-    /*
-    const rentPredictionRequest = async () => {
-        if (!suburb || !numRooms || !houseType || !rentalPeriod) {
-            alert("Please fill out all fields");
-            return;
-        }
-        
-        try {
-            const response = await fetch('http://localhost:8000/predict', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ suburb, numRooms, houseType, rentalPeriod }),
-            });
-
-            if (response.ok) {
-                const predictionData = await response.json();
-                // Pass predictionData as state to the prediction page
-                navigate('/GeneratedRentPredictions', { state: { prediction: predictionData } });
-            } else {
-                alert("Failed to fetch prediction. Please try again.");
-            }
-        } catch (error) {
-            console.error("Error fetching prediction:", error);
-            alert("An error occurred. Please try again.");
-        }
-    };*/
-
-
-
-
-=======
     // Function to send the rent prediction request
     const rentPredictionRequest = async () => {
         if (!suburb || !houseType || !numRooms || !rentalPeriod) {
@@ -112,7 +80,7 @@ function RentPred() {
             console.error("Error fetching prediction:", error);
         }
     };
->>>>>>> 42f15d95aa5510390181c2adb83266e93193aade
+
 
     return (
         <div className="sales-prediction-container">
