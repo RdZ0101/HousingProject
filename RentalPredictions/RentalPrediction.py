@@ -107,7 +107,12 @@ def Get_Rental_Prediction(suburb, bedrooms, property_type, months_ahead):
 
     rooms = int(bedrooms)
     months_ahead = int(months_ahead)
-    housing_type = property_type
+    property_type = property_type.upper()
+    if property_type not in ['F', 'H']:
+        if property_type == 'FLAT':
+            property_type = 'F'
+        elif property_type == 'HOUSE':
+            property_type = 'H'
 
     # Determine dataset path and model based on input criteria
     dataset_mapping = {
@@ -119,24 +124,24 @@ def Get_Rental_Prediction(suburb, bedrooms, property_type, months_ahead):
         ('H', 4): 'Dataset\\Rent_4BH_Final.csv',
     }
 
-    dataset_path = dataset_mapping.get((housing_type, rooms))
+    dataset_path = dataset_mapping.get((property_type, rooms))
     if not dataset_path:
         print("Invalid room and housing type combination.")
         return None
 
     # Process dataset and select model
     df = TimeSeriesPreprocessor(dataset_path)
-    if rooms == 1 and housing_type == 'F':
+    if rooms == 1 and property_type == 'F':
         return RandomForest_Rent_Model(df, postcode, months_ahead)
-    elif rooms == 2 and housing_type == 'F':
+    elif rooms == 2 and property_type == 'F':
         return RandomForest_Rent_Model(df, postcode, months_ahead)
-    elif rooms == 3 and housing_type == 'F':
+    elif rooms == 3 and property_type == 'F':
         return RandomForest_Rent_Model(df, postcode, months_ahead)
-    elif rooms == 2 and housing_type == 'H':
+    elif rooms == 2 and property_type == 'H':
         return RandomForest_Rent_Model(df, postcode, months_ahead)
-    elif rooms == 3 and housing_type == 'H':
+    elif rooms == 3 and property_type == 'H':
         return SVR_Rent_Model(df, postcode, months_ahead)
-    elif rooms == 4 and housing_type == 'H':
+    elif rooms == 4 and property_type == 'H':
         return LinearRegression_Rent_Model(df, postcode, months_ahead)
     
     return None

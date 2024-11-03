@@ -1,46 +1,52 @@
+// RentPrediction.js
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './SalesPred.css';
-import './GeneratedRentPredictions';
 
-function RentPred() {
+function RentPrediction() {
     const [suburb, setSuburb] = useState('');
     const [suggestions, setSuggestions] = useState([]);
     const [numRooms, setNumRooms] = useState('');
     const [houseType, setHouseType] = useState('');
     const [rentalPeriod, setRentalPeriod] = useState('');
+    const navigate = useNavigate();
 
     const handleSuburbChange = async (e) => {
         const userInput = e.target.value;
         setSuburb(userInput);
 
         if (userInput) {
-            const response = await fetch(`http://localhost:5001/api/suburbs?query=${userInput}`);
-            const data = await response.json();
-            setSuggestions(data);
+            try {
+                const response = await fetch(`http://localhost:5001/api/suburbs?query=${userInput}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    setSuggestions(data);
+                } else {
+                    console.error("Failed to fetch suburb suggestions");
+                }
+            } catch (error) {
+                console.error("Error fetching suggestions:", error);
+            }
         } else {
             setSuggestions([]);
         }
     };
 
-    // Handler to ensure rentalPeriod stays non-negative
     const handleRentalPeriodChange = (e) => {
         const value = Math.max(1, parseInt(e.target.value) || 1);
         setRentalPeriod(value);
     };
 
-    // Update the number of rooms options based on the selected house type
     const handleHouseTypeChange = (e) => {
         const selectedType = e.target.value;
         setHouseType(selectedType);
-        
+
         if ((selectedType === 'Flat' && !['1', '2', '3'].includes(numRooms)) || 
             (selectedType === 'House' && !['2', '3', '4'].includes(numRooms))) {
             setNumRooms('');
         }
     };
 
-    // Determine options for number of rooms based on house type
     const getRoomOptions = () => {
         if (houseType === 'Flat') {
             return ['1', '2', '3'];
@@ -50,7 +56,6 @@ function RentPred() {
         return [];
     };
 
-    // Function to send the rent prediction request
     const rentPredictionRequest = async () => {
         if (!suburb || !houseType || !numRooms || !rentalPeriod) {
             alert('Please fill in all fields');
@@ -58,24 +63,35 @@ function RentPred() {
         }
 
         const requestData = {
-            suburb: suburb,
+            suburb,
             numRooms: parseInt(numRooms),
-            houseType: houseType,
+            houseType,
             rentalPeriod: parseInt(rentalPeriod)
         };
 
         try {
-            const response = await fetch("http://0.0.0.0:8000/predict_rent", {
+            const response = await fetch("http://localhost:8000/predict_rent", { 
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(requestData)
             });
-
-            const data = await response.json();
-            console.log("Predicted Rent:", data.predicted_price);
-            // Handle the predicted price (e.g., display it on the page)
+            if (response.ok) {
+                const data = await response.json();
+                // Navigate to GeneratedRentPrediction with the prediction result
+                navigate("/GeneratedRentPredictions", { 
+                    state: { 
+                        predictedPrice: data.predicted_price,
+                        suburb,
+                        houseType,
+                        numRooms,
+                        rentalPeriod
+                    } 
+                });
+            } else {
+                console.error("Error fetching prediction");
+            }
         } catch (error) {
             console.error("Error fetching prediction:", error);
         }
@@ -163,6 +179,5 @@ function RentPred() {
     );
 }
 
-export default RentPred;
-
+export default RentPrediction;
 
