@@ -7,3 +7,20 @@
     transition: background-color 0.3s ease;
     width: 100%;
 }
+
+.historical-price-chart {
+    width: 45%;
+    max-width: 1000px;
+    text-align: center;
+    margin-left: 10px;
+    float: left;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 10px;
+    transition: transform 0.2s ease;
+
+}

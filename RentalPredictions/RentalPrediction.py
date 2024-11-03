@@ -194,3 +194,71 @@ def Get_Historical_Rent_Prices(suburb, bedrooms, property_type, months_back):
     ]
 
     return historical_data
+
+def Get_Type_Predictions(suburb, bedrooms, months_back, months_ahead):
+    # Convert suburb to postcode
+    postcode = Get_Postcode(suburb)
+    if postcode is None:
+        print(f"Suburb '{suburb}' not found.")
+        return None
+
+    rooms = int(bedrooms)
+
+    # Determine dataset path based on input criteria
+    if rooms == 1:
+        FDF = 'Dataset\\Rent_1BF_Final.csv'
+    elif rooms == 2:
+        FDF = 'Dataset\\Rent_2BF_Final.csv'
+        HDF = 'Dataset\\Rent_2BH_Final.csv'
+    elif rooms == 3:
+        FDF = 'Dataset\\Rent_3BF_Final.csv'
+        HDF = 'Dataset\\Rent_3BH_Final.csv'
+    elif rooms == 4:
+        HDF = 'Dataset\\Rent_4BH_Final.csv'
+    
+    # Process the dataset
+    Fdf = TimeSeriesPreprocessor(FDF)
+    Hdf = TimeSeriesPreprocessor(HDF)
+
+    # Get the last `months_back` months of data
+    Ftime_series_data = Fdf[Fdf['Postcode'] == postcode].iloc[:, 1:]
+    Htime_series_data = Hdf[Hdf['Postcode'] == postcode].iloc[:, 1:]
+
+    if Ftime_series_data.empty:
+        print(f"No data found for postcode {postcode}")
+        return None
+    
+    if Htime_series_data.empty:
+        print(f"No data found for postcode {postcode}")
+        return None
+    
+    # Get prediction for flat and house for the number of bedrooms for the months ahead
+    Fpredicted_price = RandomForest_Rent_Model(Fdf, postcode, months_ahead)
+    Hpredicted_price = RandomForest_Rent_Model(Hdf, postcode, months_ahead)
+
+    # Get the historical data for the past 6 months for flat and house for the number of bedrooms
+    Frecent_data = Ftime_series_data.iloc[:, -months_back:]
+    Hrecent_data = Htime_series_data.iloc[:, -months_back:]
+
+    # Prepare data as a list of date and price dictionaries
+    Fhistorical_data = [
+        {"date": col, "price": Frecent_data[col].values[0]} 
+        for col in Frecent_data.columns
+    ]
+
+    Hhistorical_data = [
+        {"date": col, "price": Hrecent_data[col].values[0]} 
+        for col in Hrecent_data.columns
+    ]
+
+    return {
+        "flat": {
+            "predicted_price": round(Fpredicted_price, 2),
+            "historical_data": Fhistorical_data
+        },
+        "house": {
+            "predicted_price": round(Hpredicted_price, 2),
+            "historical_data": Hhistorical_data
+        }
+    }
+    

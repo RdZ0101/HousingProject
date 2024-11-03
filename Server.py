@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
-from RentalPredictions.RentalPrediction import Get_Rental_Prediction, Get_Historical_Rent_Prices
+from RentalPredictions.RentalPrediction import Get_Rental_Prediction, Get_Historical_Rent_Prices, Get_Type_Predictions
 
 app = FastAPI()
 
@@ -14,6 +14,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Request models
 class RentPredictionRequest(BaseModel):
     suburb: str
     numRooms: int
@@ -25,6 +26,12 @@ class HistoricalRentPricesRequest(BaseModel):
     numRooms: int
     houseType: str
     monthsBack: int
+
+class HouseTypeComparisonRequest(BaseModel):
+    suburb: str
+    numRooms: int
+    monthsBack: int
+    monthsAhead: int
 
 @app.post("/predict_rent")
 async def predict_rent(request: RentPredictionRequest):
@@ -48,7 +55,7 @@ async def predict_rent(request: RentPredictionRequest):
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-    
+
 @app.post("/getHistoricalRentPrices")
 async def get_historical_rent_prices(request: HistoricalRentPricesRequest):
     try:
@@ -62,6 +69,31 @@ async def get_historical_rent_prices(request: HistoricalRentPricesRequest):
             raise HTTPException(status_code=404, detail="Historical data not found")
         
         return {"historical_data": historical_data}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+# New endpoint for comparing property types
+@app.post("/comparePropertyTypes")
+async def compare_property_types(request: HouseTypeComparisonRequest):
+    try:
+        suburb = request.suburb
+        bedrooms = request.numRooms
+        months_back = request.monthsBack
+        months_ahead = request.monthsAhead
+
+        # Call Get_Type_Predictions function
+        comparison_data = Get_Type_Predictions(
+            suburb=suburb,
+            bedrooms=bedrooms,
+            months_back=months_back,
+            months_ahead=months_ahead
+        )
+        
+        if comparison_data is None:
+            raise HTTPException(status_code=404, detail="Comparison data could not be generated with the given input.")
+        
+        return comparison_data
+
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
