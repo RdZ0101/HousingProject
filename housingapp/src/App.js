@@ -5,6 +5,7 @@ import SalesPred from './SalesPredictions';
 import RentPred from './RentPredictions';
 import GenSalesPred from './GeneratedSalesPrediction';
 import GeneratedRentPred from './GeneratedRentPredictions'; 
+import MarketAnalysis from './MarketAnalysis'; 
 import Footer from './Footer';
 import { Routes, Route } from 'react-router-dom';
 import NavBar from './NavBar';
@@ -19,7 +20,8 @@ function App() {
           <Route path="/SalesPredictions" element={<SalesPred />} />
           <Route path="/RentPredictions" element={<RentPred />} />
           <Route path="/GeneratedSalesPrediction" element={<GenSalesPred />} />
-          <Route path="/GeneratedRentPredictions" element={<GeneratedRentPred />} /> 
+          <Route path="/GeneratedRentPredictions" element={<GeneratedRentPred />} />
+          <Route path="/MarketAnalysis" element={<MarketAnalysis />} /> 
         </Routes>
       </div>
       <Footer /> 

@@ -51,6 +51,37 @@ function RentPred() {
         return [];
     };
 
+    /*
+    const rentPredictionRequest = async () => {
+        if (!suburb || !numRooms || !houseType || !rentalPeriod) {
+            alert("Please fill out all fields");
+            return;
+        }
+        
+        try {
+            const response = await fetch('http://localhost:8000/predict', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ suburb, numRooms, houseType, rentalPeriod }),
+            });
+
+            if (response.ok) {
+                const predictionData = await response.json();
+                // Pass predictionData as state to the prediction page
+                navigate('/GeneratedRentPredictions', { state: { prediction: predictionData } });
+            } else {
+                alert("Failed to fetch prediction. Please try again.");
+            }
+        } catch (error) {
+            console.error("Error fetching prediction:", error);
+            alert("An error occurred. Please try again.");
+        }
+    };*/
+
+
+
+
+
     return (
         <div className="sales-prediction-container">
             <h1>View the rent price of the house you are looking for</h1>
@@ -135,3 +166,5 @@ function RentPred() {
 }
 
 export default RentPred;
+
+

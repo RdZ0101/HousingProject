@@ -1,0 +1,882 @@
+[
+    {
+        "suburb": "Abbotsford",
+        "average_price": 1033549.0196078431,
+        "coordinates": {
+            "lat": -37.8045508,
+            "lng": 144.9988542
+        }
+    },
+    {
+        "suburb": "Aberfeldie",
+        "average_price": 1307192.857142857,
+        "coordinates": {
+            "lat": -37.7596196,
+            "lng": 144.8974571
+        }
+    },
+    {
+        "suburb": "Albert Park",
+        "average_price": 1927650.5376344086,
+        "coordinates": {
+            "lat": -37.8452062,
+            "lng": 144.957105
+        }
+    },
+    {
+        "suburb": "Alphington",
+        "average_price": 1397532.2580645161,
+        "coordinates": {
+            "lat": -37.7783921,
+            "lng": 145.0312833
+        }
+    },
+    {
+        "suburb": "Armadale",
+        "average_price": 1592298.013245033,
+        "coordinates": {
+            "lat": -37.8561562,
+            "lng": 145.0193253
+        }
+    },
+    {
+        "suburb": "Ascot Vale",
+        "average_price": 1054411.7647058824,
+        "coordinates": {
+            "lat": -37.7753252,
+            "lng": 144.921825
+        }
+    },
+    {
+        "suburb": "Ashburton",
+        "average_price": 1660385.3211009174,
+        "coordinates": {
+            "lat": -37.862047,
+            "lng": 145.0812907
+        }
+    },
+    {
+        "suburb": "Ashwood",
+        "average_price": 1173156.7708333333,
+        "coordinates": {
+            "lat": -37.866672,
+            "lng": 145.1022346
+        }
+    },
+    {
+        "suburb": "Aspendale",
+        "average_price": 1093392.857142857,
+        "coordinates": {
+            "lat": -38.0272365,
+            "lng": 145.1021263
+        }
+    },
+    {
+        "suburb": "Balwyn",
+        "average_price": 1893712.0535714286,
+        "coordinates": {
+            "lat": -37.8091737,
+            "lng": 145.0833678
+        }
+    },
+    {
+        "suburb": "Balwyn North",
+        "average_price": 1786108.7542087543,
+        "coordinates": {
+            "lat": -37.7919518,
+            "lng": 145.0842372
+        }
+    },
+    {
+        "suburb": "Beaumaris",
+        "average_price": 1624780.487804878,
+        "coordinates": {
+            "lat": -37.9822122,
+            "lng": 145.0389098
+        }
+    },
+    {
+        "suburb": "Bentleigh",
+        "average_price": 1299851.315018315,
+        "coordinates": {
+            "lat": -37.9175354,
+            "lng": 145.0369346
+        }
+    },
+    {
+        "suburb": "Bentleigh East",
+        "average_price": 1131418.2068965517,
+        "coordinates": {
+            "lat": -37.9220201,
+            "lng": 145.0665529
+        }
+    },
+    {
+        "suburb": "Black Rock",
+        "average_price": 1427500.0,
+        "coordinates": {
+            "lat": -37.9706564,
+            "lng": 145.0212822
+        }
+    },
+    {
+        "suburb": "Blackburn",
+        "average_price": 1335714.7540983607,
+        "coordinates": {
+            "lat": -37.82013725,
+            "lng": 145.1500496182243
+        }
+    },
+    {
+        "suburb": "Blackburn North",
+        "average_price": 1136710.5263157894,
+        "coordinates": {
+            "lat": -37.8053801,
+            "lng": 145.154324
+        }
+    },
+    {
+        "suburb": "Blackburn South",
+        "average_price": 1120930.5555555555,
+        "coordinates": {
+            "lat": -37.8388322,
+            "lng": 145.1487848
+        }
+    },
+    {
+        "suburb": "Bonbeach",
+        "average_price": 1092884.6153846155,
+        "coordinates": {
+            "lat": -38.065449,
+            "lng": 145.120108
+        }
+    },
+    {
+        "suburb": "Box Hill",
+        "average_price": 1340546.2857142857,
+        "coordinates": {
+            "lat": -37.8215116,
+            "lng": 145.1261267
+        }
+    },
+    {
+        "suburb": "Brighton",
+        "average_price": 1984226.9337539433,
+        "coordinates": {
+            "lat": -37.9081962,
+            "lng": 144.9957991
+        }
+    },
+    {
+        "suburb": "Brighton East",
+        "average_price": 1648418.4210526317,
+        "coordinates": {
+            "lat": -37.9171728,
+            "lng": 145.0163663
+        }
+    },
+    {
+        "suburb": "Bulleen",
+        "average_price": 1170676.1538461538,
+        "coordinates": {
+            "lat": -37.7662857,
+            "lng": 145.12130815898564
+        }
+    },
+    {
+        "suburb": "Burnley",
+        "average_price": 1171750.8333333333,
+        "coordinates": {
+            "lat": -37.82762235,
+            "lng": 145.0080911963464
+        }
+    },
+    {
+        "suburb": "Burwood",
+        "average_price": 1230676.2165605095,
+        "coordinates": {
+            "lat": -37.851671,
+            "lng": 145.0805767
+        }
+    },
+    {
+        "suburb": "Burwood East",
+        "average_price": 1093445.0,
+        "coordinates": {
+            "lat": -37.8535935,
+            "lng": 145.150423
+        }
+    },
+    {
+        "suburb": "Camberwell",
+        "average_price": 1861132.857142857,
+        "coordinates": {
+            "lat": -37.8384623,
+            "lng": 145.0740767
+        }
+    },
+    {
+        "suburb": "Canterbury",
+        "average_price": 2386270.588235294,
+        "coordinates": {
+            "lat": -37.8247469,
+            "lng": 145.0807636
+        }
+    },
+    {
+        "suburb": "Carlton",
+        "average_price": 1171192.9487179487,
+        "coordinates": {
+            "lat": -37.8004228,
+            "lng": 144.9684343
+        }
+    },
+    {
+        "suburb": "Carlton North",
+        "average_price": 1437973.6842105263,
+        "coordinates": {
+            "lat": -37.7845585,
+            "lng": 144.9728553
+        }
+    },
+    {
+        "suburb": "Caulfield East",
+        "average_price": 1060263.1578947369,
+        "coordinates": {
+            "lat": -37.881276,
+            "lng": 145.0420847
+        }
+    },
+    {
+        "suburb": "Caulfield South",
+        "average_price": 1243309.5238095238,
+        "coordinates": {
+            "lat": -37.894699,
+            "lng": 145.0249323
+        }
+    },
+    {
+        "suburb": "Cheltenham",
+        "average_price": 1026462.0689655172,
+        "coordinates": {
+            "lat": -37.9634181,
+            "lng": 145.0615668
+        }
+    },
+    {
+        "suburb": "Clayton",
+        "average_price": 1139453.9428571428,
+        "coordinates": {
+            "lat": -37.9142211,
+            "lng": 145.1268559
+        }
+    },
+    {
+        "suburb": "Clifton Hill",
+        "average_price": 1242391.8918918918,
+        "coordinates": {
+            "lat": -37.78887625,
+            "lng": 144.99536132966975
+        }
+    },
+    {
+        "suburb": "Cremorne",
+        "average_price": 1022947.3684210526,
+        "coordinates": {
+            "lat": -37.8290227,
+            "lng": 144.9927735
+        }
+    },
+    {
+        "suburb": "Deepdene",
+        "average_price": 2001785.7142857143,
+        "coordinates": {
+            "lat": -37.8121234,
+            "lng": 145.0664377
+        }
+    },
+    {
+        "suburb": "Doncaster",
+        "average_price": 1269556.862745098,
+        "coordinates": {
+            "lat": -37.7848299,
+            "lng": 145.1238431
+        }
+    },
+    {
+        "suburb": "Doncaster East",
+        "average_price": 1288410.743801653,
+        "coordinates": {
+            "lat": -37.7788744,
+            "lng": 145.1638815
+        }
+    },
+    {
+        "suburb": "Donvale",
+        "average_price": 1336621.9512195121,
+        "coordinates": {
+            "lat": -37.7898094,
+            "lng": 145.1914915
+        }
+    },
+    {
+        "suburb": "Eaglemont",
+        "average_price": 1638325.0,
+        "coordinates": {
+            "lat": -37.7637393,
+            "lng": 145.0537729
+        }
+    },
+    {
+        "suburb": "East Melbourne",
+        "average_price": 1374430.5555555555,
+        "coordinates": {
+            "lat": -37.812498,
+            "lng": 144.9858851
+        }
+    },
+    {
+        "suburb": "Elsternwick",
+        "average_price": 1258353.3653846155,
+        "coordinates": {
+            "lat": -37.8852471,
+            "lng": 145.0011368
+        }
+    },
+    {
+        "suburb": "Essendon",
+        "average_price": 1084903.0470914128,
+        "coordinates": {
+            "lat": -37.7498293,
+            "lng": 144.9109062
+        }
+    },
+    {
+        "suburb": "Essendon West",
+        "average_price": 1106600.0,
+        "coordinates": {
+            "lat": -37.7528304,
+            "lng": 144.8845846
+        }
+    },
+    {
+        "suburb": "Fairfield",
+        "average_price": 1076811.111111111,
+        "coordinates": {
+            "lat": -37.7791763,
+            "lng": 145.0169241
+        }
+    },
+    {
+        "suburb": "Fitzroy",
+        "average_price": 1274792.4528301887,
+        "coordinates": {
+            "lat": -37.8010382,
+            "lng": 144.9792611
+        }
+    },
+    {
+        "suburb": "Fitzroy North",
+        "average_price": 1288713.087248322,
+        "coordinates": {
+            "lat": -37.7833316,
+            "lng": 144.9837074
+        }
+    },
+    {
+        "suburb": "Forest Hill",
+        "average_price": 1010910.0,
+        "coordinates": {
+            "lat": -37.8362738,
+            "lng": 145.1690911
+        }
+    },
+    {
+        "suburb": "Glen Iris",
+        "average_price": 1553237.770897833,
+        "coordinates": {
+            "lat": -37.855814,
+            "lng": 145.0646117
+        }
+    },
+    {
+        "suburb": "Glen Waverley",
+        "average_price": 1333909.2142857143,
+        "coordinates": {
+            "lat": -37.879667749999996,
+            "lng": 145.16291624893952
+        }
+    },
+    {
+        "suburb": "Hampton",
+        "average_price": 1627310.2272727273,
+        "coordinates": {
+            "lat": -37.9381127,
+            "lng": 145.0014764
+        }
+    },
+    {
+        "suburb": "Hampton East",
+        "average_price": 1096183.9080459771,
+        "coordinates": {
+            "lat": -37.9385409,
+            "lng": 145.0306726
+        }
+    },
+    {
+        "suburb": "Hawthorn",
+        "average_price": 1238074.1935483871,
+        "coordinates": {
+            "lat": -37.8244246,
+            "lng": 145.0317207
+        }
+    },
+    {
+        "suburb": "Hawthorn East",
+        "average_price": 1433302.7731958763,
+        "coordinates": {
+            "lat": -37.8313785,
+            "lng": 145.0499797
+        }
+    },
+    {
+        "suburb": "Highett",
+        "average_price": 1146766.3043478262,
+        "coordinates": {
+            "lat": -37.9484438,
+            "lng": 145.04188
+        }
+    },
+    {
+        "suburb": "Hughesdale",
+        "average_price": 1053608.3333333333,
+        "coordinates": {
+            "lat": -37.8938651,
+            "lng": 145.0755107223269
+        }
+    },
+    {
+        "suburb": "Ivanhoe",
+        "average_price": 1214617.6470588236,
+        "coordinates": {
+            "lat": -37.7688774,
+            "lng": 145.0454487
+        }
+    },
+    {
+        "suburb": "Ivanhoe East",
+        "average_price": 1769047.619047619,
+        "coordinates": {
+            "lat": -37.7733903,
+            "lng": 145.0617815
+        }
+    },
+    {
+        "suburb": "Kew",
+        "average_price": 1796676.0383386582,
+        "coordinates": {
+            "lat": -37.8033586,
+            "lng": 145.0333285
+        }
+    },
+    {
+        "suburb": "Kew East",
+        "average_price": 1674408.163265306,
+        "coordinates": {
+            "lat": -37.7904215,
+            "lng": 145.0527906
+        }
+    },
+    {
+        "suburb": "Kooyong",
+        "average_price": 1698875.0,
+        "coordinates": {
+            "lat": -37.841394,
+            "lng": 145.0358402
+        }
+    },
+    {
+        "suburb": "Malvern",
+        "average_price": 2087618.6440677966,
+        "coordinates": {
+            "lat": -37.8576088,
+            "lng": 145.0350666
+        }
+    },
+    {
+        "suburb": "Malvern East",
+        "average_price": 1618581.4215246637,
+        "coordinates": {
+            "lat": -37.876835,
+            "lng": 145.0658739
+        }
+    },
+    {
+        "suburb": "McKinnon",
+        "average_price": 1478283.8709677418,
+        "coordinates": {
+            "lat": -37.911485400000004,
+            "lng": 145.03808983787522
+        }
+    },
+    {
+        "suburb": "Middle Park",
+        "average_price": 2232148.1481481483,
+        "coordinates": {
+            "lat": -37.8511511,
+            "lng": 144.9620399
+        }
+    },
+    {
+        "suburb": "Mitcham",
+        "average_price": 1060949.8723404256,
+        "coordinates": {
+            "lat": -37.8180929,
+            "lng": 145.1928003
+        }
+    },
+    {
+        "suburb": "Mont Albert",
+        "average_price": 1502767.35,
+        "coordinates": {
+            "lat": -37.8175479,
+            "lng": 145.1075721
+        }
+    },
+    {
+        "suburb": "Moonee Ponds",
+        "average_price": 1126472.0164609053,
+        "coordinates": {
+            "lat": -37.765935,
+            "lng": 144.9192614
+        }
+    },
+    {
+        "suburb": "Mount Waverley",
+        "average_price": 1372981.6568047337,
+        "coordinates": {
+            "lat": -37.8752637,
+            "lng": 145.1281258
+        }
+    },
+    {
+        "suburb": "Mulgrave",
+        "average_price": 1059182.8421052631,
+        "coordinates": {
+            "lat": -37.9261741,
+            "lng": 145.1723107
+        }
+    },
+    {
+        "suburb": "Murrumbeena",
+        "average_price": 1053537.0571428572,
+        "coordinates": {
+            "lat": -37.890314950000004,
+            "lng": 145.06759718129234
+        }
+    },
+    {
+        "suburb": "Newport",
+        "average_price": 1018754.028436019,
+        "coordinates": {
+            "lat": -37.8423064,
+            "lng": 144.88356223970217
+        }
+    },
+    {
+        "suburb": "North Warrandyte",
+        "average_price": 1084000.0,
+        "coordinates": {
+            "lat": -37.7236286,
+            "lng": 145.2087814
+        }
+    },
+    {
+        "suburb": "Northcote",
+        "average_price": 1239758.6956521738,
+        "coordinates": {
+            "lat": -37.7698708,
+            "lng": 144.9952542
+        }
+    },
+    {
+        "suburb": "Notting Hill",
+        "average_price": 1020722.2222222222,
+        "coordinates": {
+            "lat": -37.905582,
+            "lng": 145.1455616
+        }
+    },
+    {
+        "suburb": "Oakleigh",
+        "average_price": 1092538.4615384615,
+        "coordinates": {
+            "lat": -37.900392,
+            "lng": 145.0883324
+        }
+    },
+    {
+        "suburb": "Oakleigh East",
+        "average_price": 1094482.142857143,
+        "coordinates": {
+            "lat": -37.8996435,
+            "lng": 145.10567
+        }
+    },
+    {
+        "suburb": "Oakleigh South",
+        "average_price": 1004042.3063063063,
+        "coordinates": {
+            "lat": -37.9248257,
+            "lng": 145.0921745
+        }
+    },
+    {
+        "suburb": "Ormond",
+        "average_price": 1123722.2222222222,
+        "coordinates": {
+            "lat": -37.9034396,
+            "lng": 145.03959909925993
+        }
+    },
+    {
+        "suburb": "Parkdale",
+        "average_price": 1060496.875,
+        "coordinates": {
+            "lat": -37.9930593,
+            "lng": 145.0763034
+        }
+    },
+    {
+        "suburb": "Parkville",
+        "average_price": 1447563.2653061224,
+        "coordinates": {
+            "lat": -37.7871148,
+            "lng": 144.9515533
+        }
+    },
+    {
+        "suburb": "Plenty",
+        "average_price": 1141000.0,
+        "coordinates": {
+            "lat": -37.6674499,
+            "lng": 145.1123773
+        }
+    },
+    {
+        "suburb": "Port Melbourne",
+        "average_price": 1273469.7313432836,
+        "coordinates": {
+            "lat": -37.8333613,
+            "lng": 144.9219203
+        }
+    },
+    {
+        "suburb": "Prahran",
+        "average_price": 1165938.6792452831,
+        "coordinates": {
+            "lat": -37.8498341,
+            "lng": 144.9897951
+        }
+    },
+    {
+        "suburb": "Princes Hill",
+        "average_price": 1633264.705882353,
+        "coordinates": {
+            "lat": -37.7818041,
+            "lng": 144.9665675
+        }
+    },
+    {
+        "suburb": "Richmond",
+        "average_price": 1067584.5102505696,
+        "coordinates": {
+            "lat": -37.80745,
+            "lng": 144.99071761295892
+        }
+    },
+    {
+        "suburb": "Sandringham",
+        "average_price": 1559589.0410958903,
+        "coordinates": {
+            "lat": -37.9502592,
+            "lng": 145.0043868
+        }
+    },
+    {
+        "suburb": "Seaholme",
+        "average_price": 1038194.4444444445,
+        "coordinates": {
+            "lat": -37.86785845,
+            "lng": 144.8410573479961
+        }
+    },
+    {
+        "suburb": "Silvan",
+        "average_price": 1077500.0,
+        "coordinates": {
+            "lat": -37.8232257,
+            "lng": 145.4196179
+        }
+    },
+    {
+        "suburb": "South Melbourne",
+        "average_price": 1349624.1610738256,
+        "coordinates": {
+            "lat": -37.8334603,
+            "lng": 144.9570188
+        }
+    },
+    {
+        "suburb": "South Yarra",
+        "average_price": 1058337.9573170731,
+        "coordinates": {
+            "lat": -37.8377695,
+            "lng": 144.9918537
+        }
+    },
+    {
+        "suburb": "Strathmore",
+        "average_price": 1213563.3333333333,
+        "coordinates": {
+            "lat": -37.7333202,
+            "lng": 144.9182433
+        }
+    },
+    {
+        "suburb": "Surrey Hills",
+        "average_price": 1585291.0447761193,
+        "coordinates": {
+            "lat": -37.8271881,
+            "lng": 145.0978326
+        }
+    },
+    {
+        "suburb": "Templestowe",
+        "average_price": 1500606.3943661973,
+        "coordinates": {
+            "lat": -37.7540588,
+            "lng": 145.1486152
+        }
+    },
+    {
+        "suburb": "Templestowe Lower",
+        "average_price": 1181310.7344632768,
+        "coordinates": {
+            "lat": -37.7638749,
+            "lng": 145.1122762
+        }
+    },
+    {
+        "suburb": "Toorak",
+        "average_price": 1655193.6104651163,
+        "coordinates": {
+            "lat": -37.8416141,
+            "lng": 145.0176215
+        }
+    },
+    {
+        "suburb": "Travancore",
+        "average_price": 1040766.6666666666,
+        "coordinates": {
+            "lat": -37.7807553,
+            "lng": 144.935503
+        }
+    },
+    {
+        "suburb": "Vermont",
+        "average_price": 1023926.4705882353,
+        "coordinates": {
+            "lat": -37.8379913,
+            "lng": 145.19836
+        }
+    },
+    {
+        "suburb": "Vermont South",
+        "average_price": 1218656.25,
+        "coordinates": {
+            "lat": -37.854386,
+            "lng": 145.1878065
+        }
+    },
+    {
+        "suburb": "Wandin North",
+        "average_price": 1150000.0,
+        "coordinates": {
+            "lat": -37.7806025,
+            "lng": 145.4262934
+        }
+    },
+    {
+        "suburb": "Wantirna South",
+        "average_price": 1056723.425531915,
+        "coordinates": {
+            "lat": -37.8737902,
+            "lng": 145.2217475
+        }
+    },
+    {
+        "suburb": "Warrandyte",
+        "average_price": 1377416.6666666667,
+        "coordinates": {
+            "lat": -37.7585968,
+            "lng": 145.22762818038902
+        }
+    },
+    {
+        "suburb": "Waterways",
+        "average_price": 1103500.0,
+        "coordinates": {
+            "lat": -38.0147783,
+            "lng": 145.1305166
+        }
+    },
+    {
+        "suburb": "West Melbourne",
+        "average_price": 1076774.5098039217,
+        "coordinates": {
+            "lat": -37.808747,
+            "lng": 144.9238207
+        }
+    },
+    {
+        "suburb": "Wheelers Hill",
+        "average_price": 1245478.2,
+        "coordinates": {
+            "lat": -37.9103266,
+            "lng": 145.1895175
+        }
+    },
+    {
+        "suburb": "Wildwood",
+        "average_price": 1030000.0,
+        "coordinates": {
+            "lat": -37.5647385,
+            "lng": 144.8007525
+        }
+    },
+    {
+        "suburb": "Williamstown",
+        "average_price": 1343651.4285714286,
+        "coordinates": {
+            "lat": -37.8611788,
+            "lng": 144.8898569
+        }
+    },
+    {
+        "suburb": "Windsor",
+        "average_price": 1029807.2289156626,
+        "coordinates": {
+            "lat": -37.8557495,
+            "lng": 144.9916585
+        }
+    },
+    {
+        "suburb": "Wonga Park",
+        "average_price": 1357500.0,
+        "coordinates": {
+            "lat": -37.7390001,
+            "lng": 145.2669658
+        }
+    }
+]
