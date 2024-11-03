@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
-from RentalPredictions.RentalPrediction import Get_Rental_Prediction
+from RentalPredictions.RentalPrediction import Get_Rental_Prediction, Get_Historical_Rent_Prices
 
 app = FastAPI()
 
@@ -14,14 +14,18 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Define request model for the POST request
 class RentPredictionRequest(BaseModel):
     suburb: str
     numRooms: int
     houseType: str
     rentalPeriod: int
 
-# FastAPI endpoint for rent prediction
+class HistoricalRentPricesRequest(BaseModel):
+    suburb: str
+    numRooms: int
+    houseType: str
+    monthsBack: int
+
 @app.post("/predict_rent")
 async def predict_rent(request: RentPredictionRequest):
     try:
@@ -30,7 +34,6 @@ async def predict_rent(request: RentPredictionRequest):
         property_type = request.houseType
         months_ahead = request.rentalPeriod
 
-        # Call the Get_Rental_Prediction function with provided data
         predicted_price = Get_Rental_Prediction(
             suburb=suburb,
             bedrooms=bedrooms,
@@ -41,9 +44,24 @@ async def predict_rent(request: RentPredictionRequest):
         if predicted_price is None:
             raise HTTPException(status_code=404, detail="Prediction could not be made with the given data.")
 
-        # Return the predicted rent price as a JSON response, rounded to 2 decimal places
         return {"predicted_price": round(predicted_price, 2)}
 
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
+@app.post("/getHistoricalRentPrices")
+async def get_historical_rent_prices(request: HistoricalRentPricesRequest):
+    try:
+        suburb = request.suburb
+        numRooms = request.numRooms
+        houseType = request.houseType
+        monthsBack = request.monthsBack
+
+        historical_data = Get_Historical_Rent_Prices(suburb, numRooms, houseType, monthsBack)
+        if not historical_data:
+            raise HTTPException(status_code=404, detail="Historical data not found")
+        
+        return {"historical_data": historical_data}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 

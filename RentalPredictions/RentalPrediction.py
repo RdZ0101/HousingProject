@@ -145,3 +145,52 @@ def Get_Rental_Prediction(suburb, bedrooms, property_type, months_ahead):
         return LinearRegression_Rent_Model(df, postcode, months_ahead)
     
     return None
+
+def Get_Historical_Rent_Prices(suburb, bedrooms, property_type, months_back):
+    # Convert suburb to postcode
+    postcode = Get_Postcode(suburb)
+    if postcode is None:
+        print(f"Suburb '{suburb}' not found.")
+        return None
+
+    rooms = int(bedrooms)
+    property_type = property_type.upper()
+    if property_type not in ['F', 'H']:
+        if property_type == 'FLAT':
+            property_type = 'F'
+        elif property_type == 'HOUSE':
+            property_type = 'H'
+
+    # Determine dataset path based on input criteria
+    dataset_mapping = {
+        ('F', 1): 'Dataset\\Rent_1BF_Final.csv',
+        ('F', 2): 'Dataset\\Rent_2BF_Final.csv',
+        ('F', 3): 'Dataset\\Rent_3BF_Final.csv',
+        ('H', 2): 'Dataset\\Rent_2BH_Final.csv',
+        ('H', 3): 'Dataset\\Rent_3BH_Final.csv',
+        ('H', 4): 'Dataset\\Rent_4BH_Final.csv',
+    }
+
+    dataset_path = dataset_mapping.get((property_type, rooms))
+    if not dataset_path:
+        print("Invalid room and housing type combination.")
+        return None
+
+    # Process the dataset
+    df = TimeSeriesPreprocessor(dataset_path)
+    time_series_data = df[df['Postcode'] == postcode].iloc[:, 1:]
+
+    if time_series_data.empty:
+        print(f"No data found for postcode {postcode}")
+        return None
+
+    # Get the last `months_back` months of data
+    recent_data = time_series_data.iloc[:, -months_back:]
+    
+    # Prepare data as a list of date and price dictionaries
+    historical_data = [
+        {"date": col, "price": recent_data[col].values[0]} 
+        for col in recent_data.columns
+    ]
+
+    return historical_data
