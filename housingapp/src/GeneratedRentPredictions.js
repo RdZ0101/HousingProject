@@ -18,7 +18,7 @@ const GeneratedRentPrediction = () => {
     useEffect(() => {
         const fetchHistoricalPrices = async () => {
             try {
-                const response = await fetch('http://localhost:8000/getHistoricalRentPrices', {
+                const response = await fetch('http://localhost:8000/get_historical_rent_prices', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -123,6 +123,9 @@ const GeneratedRentPrediction = () => {
             <div className='historical-price-chart'>
                 <h4>Historical Rent Prices (last 6 months):</h4>
                 <svg ref={svgRef}></svg>
+            </div>
+            <div className='back-link'>
+                
             </div>
         </div>
     );

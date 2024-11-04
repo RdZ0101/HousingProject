@@ -1,13 +1,17 @@
 import pandas as pd
 import numpy as np
+import sys
+sys.path.append("C:/HousingProject")  # Adjust path as needed
 from sklearn.model_selection import GridSearchCV, KFold, cross_val_score, train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 from sklearn.svm import SVR
-from .Preprocessor import TimeSeriesPreprocessor
+from RentalPredictions.Preprocessor import TimeSeriesPreprocessor
 from datetime import datetime
+from geopy.geocoders import Nominatim
+from geopy.distance import geodesic
 
 # Functions to run the time series rental models
 
@@ -195,70 +199,74 @@ def Get_Historical_Rent_Prices(suburb, bedrooms, property_type, months_back):
 
     return historical_data
 
-def Get_Type_Predictions(suburb, bedrooms, months_back, months_ahead):
+
+def find_neighboring_suburbs(suburb_name, radius_km=5):
+    # Initialize Nominatim geolocator
+    geolocator = Nominatim(user_agent="neighboring_suburb_finder")
+
+    # Geocode the provided suburb to get its latitude and longitude
+    location = geolocator.geocode(suburb_name)
+    if not location:
+        print(f"Suburb '{suburb_name}' not found.")
+        return []
+
+    # Get latitude and longitude
+    lat, lon = location.latitude, location.longitude
+
+    # List to store neighboring suburbs
+    neighboring_suburbs = []
+
+    # Define search bounds (simple approximation, could be improved)
+    min_lat, max_lat = lat - 0.05, lat + 0.05
+    min_lon, max_lon = lon - 0.05, lon + 0.05
+
+    # Perform a bounding box search for nearby places
+    results = geolocator.geocode(f"{lat}, {lon}", exactly_one=False)
+
+    # Filter results to only include suburbs within the specified radius
+    for result in results:
+        if 'suburb' in result.raw.get('type', ''):
+            suburb_distance = geodesic((lat, lon), (result.latitude, result.longitude)).km
+            if suburb_distance <= radius_km:
+                neighboring_suburbs.append((result.address, suburb_distance))
+
+    return neighboring_suburbs
+
+def Get_Rent_Comparisson(suburb, bedrooms, property_type, months_ahead, radius_km=5):
     # Convert suburb to postcode
     postcode = Get_Postcode(suburb)
     if postcode is None:
         print(f"Suburb '{suburb}' not found.")
         return None
 
+    property_type = property_type.upper()
     rooms = int(bedrooms)
+    months_ahead = int(months_ahead)
 
-    # Determine dataset path based on input criteria
-    if rooms == 1:
-        FDF = 'Dataset\\Rent_1BF_Final.csv'
-    elif rooms == 2:
-        FDF = 'Dataset\\Rent_2BF_Final.csv'
-        HDF = 'Dataset\\Rent_2BH_Final.csv'
-    elif rooms == 3:
-        FDF = 'Dataset\\Rent_3BF_Final.csv'
-        HDF = 'Dataset\\Rent_3BH_Final.csv'
-    elif rooms == 4:
-        HDF = 'Dataset\\Rent_4BH_Final.csv'
-    
-    # Process the dataset
-    Fdf = TimeSeriesPreprocessor(FDF)
-    Hdf = TimeSeriesPreprocessor(HDF)
+    if property_type not in ['F', 'H']:
+        if property_type == 'FLAT':
+            property_type = 'F'
+        elif property_type == 'HOUSE':
+            property_type = 'H'
 
-    # Get the last `months_back` months of data
-    Ftime_series_data = Fdf[Fdf['Postcode'] == postcode].iloc[:, 1:]
-    Htime_series_data = Hdf[Hdf['Postcode'] == postcode].iloc[:, 1:]
+    # Predict rent for the same suburb with a different property type
+    alt_property_type = 'H' if property_type == 'F' else 'F'
+    alt_type_prediction = Get_Rental_Prediction(suburb, rooms, alt_property_type, months_ahead)
+    print(f"Predicted rent for {alt_property_type} with {rooms} bedrooms in {suburb}: {alt_type_prediction}")
 
-    if Ftime_series_data.empty:
-        print(f"No data found for postcode {postcode}")
-        return None
-    
-    if Htime_series_data.empty:
-        print(f"No data found for postcode {postcode}")
-        return None
-    
-    # Get prediction for flat and house for the number of bedrooms for the months ahead
-    Fpredicted_price = RandomForest_Rent_Model(Fdf, postcode, months_ahead)
-    Hpredicted_price = RandomForest_Rent_Model(Hdf, postcode, months_ahead)
+    # Find neighboring suburbs
+    neighboring_suburbs = find_neighboring_suburbs(suburb, radius_km)
 
-    # Get the historical data for the past 6 months for flat and house for the number of bedrooms
-    Frecent_data = Ftime_series_data.iloc[:, -months_back:]
-    Hrecent_data = Htime_series_data.iloc[:, -months_back:]
+    # Predictions for neighboring suburbs
+    for neighbor in neighboring_suburbs:
+        neighbor_suburb = neighbor[0].split(",")[0]  # Get the main suburb name from the address
+        print(f"\nPredictions for neighboring suburb: {neighbor_suburb}")
 
-    # Prepare data as a list of date and price dictionaries
-    Fhistorical_data = [
-        {"date": col, "price": Frecent_data[col].values[0]} 
-        for col in Frecent_data.columns
-    ]
+        # Same property type and room number in neighboring suburb
+        same_type_prediction = Get_Rental_Prediction(neighbor_suburb, rooms, property_type, months_ahead)
+        print(f"Predicted rent for {property_type} with {rooms} bedrooms in {neighbor_suburb}: {same_type_prediction}")
 
-    Hhistorical_data = [
-        {"date": col, "price": Hrecent_data[col].values[0]} 
-        for col in Hrecent_data.columns
-    ]
+        # Different property type in neighboring suburb
+        alt_neighbor_type_prediction = Get_Rental_Prediction(neighbor_suburb, rooms, alt_property_type, months_ahead)
+        print(f"Predicted rent for {alt_property_type} with {rooms} bedrooms in {neighbor_suburb}: {alt_neighbor_type_prediction}")
 
-    return {
-        "flat": {
-            "predicted_price": round(Fpredicted_price, 2),
-            "historical_data": Fhistorical_data
-        },
-        "house": {
-            "predicted_price": round(Hpredicted_price, 2),
-            "historical_data": Hhistorical_data
-        }
-    }
-    
