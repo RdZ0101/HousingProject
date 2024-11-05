@@ -88,6 +88,7 @@ async def get_rent_comparisson(request: HousingComparisonRequest):
         return {"predictions": predictions}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
     
 if __name__ == "__main__":
     import uvicorn

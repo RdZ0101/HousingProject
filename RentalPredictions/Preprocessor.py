@@ -116,6 +116,9 @@ def TimeSeriesPreprocessor(inputFileName):
     """
     # Load the dataset
     df = pd.read_csv(inputFileName)
+
+    # Convert placeholders like '-' to 0
+    df.replace('-', 0, inplace=True)
     
     # Drop duplicates if 'Suburb' and 'Postcode' are both duplicated
     df.drop_duplicates(subset=['Postcode'], keep='first', inplace=True)

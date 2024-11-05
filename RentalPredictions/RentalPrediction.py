@@ -10,8 +10,9 @@ from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 from sklearn.svm import SVR
 from RentalPredictions.Preprocessor import TimeSeriesPreprocessor
 from datetime import datetime
+import requests
 from geopy.geocoders import Nominatim
-from geopy.distance import geodesic
+
 
 # Functions to run the time series rental models
 
@@ -96,6 +97,7 @@ def Get_Postcode(suburb):
         df = pd.read_csv(file)
         if suburb in df['Suburb'].values:
             PostCode = df[df['Suburb'] == suburb]['Postcode'].values[0]
+            print(f"Postcode for {suburb} is {PostCode}")
             break  # Exit the loop once the suburb is found
 
     return PostCode
@@ -200,73 +202,63 @@ def Get_Historical_Rent_Prices(suburb, bedrooms, property_type, months_back):
     return historical_data
 
 
-def find_neighboring_suburbs(suburb_name, radius_km=5):
-    # Initialize Nominatim geolocator
-    geolocator = Nominatim(user_agent="neighboring_suburb_finder")
 
-    # Geocode the provided suburb to get its latitude and longitude
-    location = geolocator.geocode(suburb_name)
+def Find_Neighboring_Suburbs(lat, lon, radius_km):
+    overpass_url = "http://overpass-api.de/api/interpreter"
+    overpass_query = f"""
+    [out:json];
+    (
+      node["place"="suburb"](around:{radius_km * 1000},{lat},{lon});
+    );
+    out body;
+    """
+    response = requests.get(overpass_url, params={'data': overpass_query})
+    data = response.json()
+
+    suburbs = []
+    for element in data['elements']:
+        suburb_name = element['tags'].get('name')
+        if suburb_name:
+            suburbs.append(suburb_name)
+    return suburbs
+
+
+def Get_Rent_Comparisson(suburb, bedrooms, property_type, months_ahead, radius_km=3):
+    # Initialize Nominatim geolocator
+    geolocator = Nominatim(user_agent="rent_comparison_app")
+    location = geolocator.geocode(f"{suburb}, Australia")
     if not location:
-        print(f"Suburb '{suburb_name}' not found.")
+        print(f"Suburb '{suburb}' not found.")
         return []
 
-    # Get latitude and longitude
     lat, lon = location.latitude, location.longitude
 
-    # List to store neighboring suburbs
-    neighboring_suburbs = []
-
-    # Define search bounds (simple approximation, could be improved)
-    min_lat, max_lat = lat - 0.05, lat + 0.05
-    min_lon, max_lon = lon - 0.05, lon + 0.05
-
-    # Perform a bounding box search for nearby places
-    results = geolocator.geocode(f"{lat}, {lon}", exactly_one=False)
-
-    # Filter results to only include suburbs within the specified radius
-    for result in results:
-        if 'suburb' in result.raw.get('type', ''):
-            suburb_distance = geodesic((lat, lon), (result.latitude, result.longitude)).km
-            if suburb_distance <= radius_km:
-                neighboring_suburbs.append((result.address, suburb_distance))
-
-    return neighboring_suburbs
-
-def Get_Rent_Comparisson(suburb, bedrooms, property_type, months_ahead, radius_km=5):
-    # Convert suburb to postcode
-    postcode = Get_Postcode(suburb)
-    if postcode is None:
-        print(f"Suburb '{suburb}' not found.")
-        return None
-
+    # Determine the alternate property type
     property_type = property_type.upper()
-    rooms = int(bedrooms)
-    months_ahead = int(months_ahead)
-
     if property_type not in ['F', 'H']:
         if property_type == 'FLAT':
             property_type = 'F'
         elif property_type == 'HOUSE':
             property_type = 'H'
 
-    # Predict rent for the same suburb with a different property type
     alt_property_type = 'H' if property_type == 'F' else 'F'
-    alt_type_prediction = Get_Rental_Prediction(suburb, rooms, alt_property_type, months_ahead)
-    print(f"Predicted rent for {alt_property_type} with {rooms} bedrooms in {suburb}: {alt_type_prediction}")
 
-    # Find neighboring suburbs
-    neighboring_suburbs = find_neighboring_suburbs(suburb, radius_km)
+    # Find neighboring suburbs using Overpass API
+    neighboring_suburbs = Find_Neighboring_Suburbs(lat, lon, radius_km)
 
-    # Predictions for neighboring suburbs
+    results = []
+
+
+
+    # Get predictions for neighboring suburbs with both housing types
     for neighbor in neighboring_suburbs:
-        neighbor_suburb = neighbor[0].split(",")[0]  # Get the main suburb name from the address
-        print(f"\nPredictions for neighboring suburb: {neighbor_suburb}")
+        for type_ in [property_type, alt_property_type]:
+            neighbor_prediction = Get_Rental_Prediction(neighbor, bedrooms, type_, months_ahead)
+            if neighbor_prediction is not None:
+                results.append({
+                    "suburb": neighbor,
+                    "housing_type": type_,
+                    "price": round(neighbor_prediction, 2)
+                })
 
-        # Same property type and room number in neighboring suburb
-        same_type_prediction = Get_Rental_Prediction(neighbor_suburb, rooms, property_type, months_ahead)
-        print(f"Predicted rent for {property_type} with {rooms} bedrooms in {neighbor_suburb}: {same_type_prediction}")
-
-        # Different property type in neighboring suburb
-        alt_neighbor_type_prediction = Get_Rental_Prediction(neighbor_suburb, rooms, alt_property_type, months_ahead)
-        print(f"Predicted rent for {alt_property_type} with {rooms} bedrooms in {neighbor_suburb}: {alt_neighbor_type_prediction}")
-
+    return results
