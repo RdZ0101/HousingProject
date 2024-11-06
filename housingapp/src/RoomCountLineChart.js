@@ -50,7 +50,7 @@ function RoomCountLineChart({ userPostcode, houseType }) {
             const roomCounts = [1, 2, 3, 4, 5];
 
             try {
-                const response = await axios.post('http://127.0.0.1:8000/predict_room_prices', {
+                const response = await axios.post('http://127.0.0.1:5500/predict_room_prices', {
                     postcode: userPostcode,
                     house_type: houseType,
                     room_counts: roomCounts,

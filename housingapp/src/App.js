@@ -3,7 +3,7 @@ import './App.css';
 import Home from './Home';
 import SalesPred from './SalesPredictions';
 import RentPred from './RentPredictions';
-import GenSalesPred from './GeneratedSalesPrediction';
+import GeneratedSalesPrediction from './GeneratedSalesPrediction';
 import GeneratedRentPred from './GeneratedRentPredictions'; 
 import MarketAnalysis from './MarketAnalysis'; 
 import Footer from './Footer';
@@ -19,7 +19,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/SalesPredictions" element={<SalesPred />} />
           <Route path="/RentPredictions" element={<RentPred />} />
-          <Route path="/GeneratedSalesPrediction" element={<GenSalesPred />} />
+		  <Route path="/generated-sales-prediction" element={<GeneratedSalesPrediction />} />
           <Route path="/GeneratedRentPredictions" element={<GeneratedRentPred />} />
           <Route path="/MarketAnalysis" element={<MarketAnalysis />} /> 
         </Routes>

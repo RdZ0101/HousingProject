@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getPrediction } from './api';
+import { getPrediction } from './salesapi';
 import { useNavigate } from 'react-router-dom';
 import Papa from 'papaparse';
 

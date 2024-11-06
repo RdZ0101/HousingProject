@@ -48,7 +48,7 @@ function PostcodePriceBarChart({ userPostcode, userRooms, userHouseType }) {
             const postcodes = [userPostcode, '3067', '3042', '3206', '3147', '3183', '3103', '3104'];
 
             try {
-                const response = await axios.post('http://127.0.0.1:8000/predict_postcode_prices', {
+                const response = await axios.post('http://127.0.0.1:5500/predict_postcode_prices', {
                     postcode: postcodes,
                     house_type: userHouseType,
                     room_counts: userRooms,
