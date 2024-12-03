@@ -1,0 +1,414 @@
+[
+    {
+        "Suburb": "Albert Park",
+        "average_rent": 432.16494845360825,
+        "coordinates": {
+            "lat": -37.8452062,
+            "lng": 144.957105
+        }
+    },
+    {
+        "Suburb": "Armadale",
+        "average_rent": 362.45360824742266,
+        "coordinates": {
+            "lat": -37.8561562,
+            "lng": 145.0193253
+        }
+    },
+    {
+        "Suburb": "Carlton-Parkville",
+        "average_rent": 380.2061855670103,
+        "coordinates": {
+            "lat": -37.8000,
+            "lng": 144.9667
+        }
+    },
+    {
+        "Suburb": "CBD-St Kilda Rd",
+        "average_rent": 412.7113402061856,
+        "coordinates": {
+            "lat": -37.8200,
+            "lng": 144.9700
+        }
+    },
+    {
+        "Suburb": "Collingwood",
+        "average_rent": 399.8659793814433,
+        "coordinates": {
+            "lat": -37.8000,
+            "lng": 144.9833
+        }
+    },
+    {
+        "Suburb": "East St Kilda",
+        "average_rent": 325.0,
+        "coordinates": {
+            "lat": -37.8700,
+            "lng": 144.9930
+        }
+    },
+    {
+        "Suburb": "Elwood",
+        "average_rent": 352.16494845360825,
+        "coordinates": {
+            "lat": -37.8800,
+            "lng": 144.9800
+        }
+    },
+    {
+        "Suburb": "Flemington",
+        "average_rent": 349.35051546391753,
+        "coordinates": {
+            "lat": -37.7800,
+            "lng": 144.9300
+        }
+    },
+    {
+        "Suburb": "North Melbourne",
+        "average_rent": 383.02061855670104,
+        "coordinates": {
+            "lat": -37.8000,
+            "lng": 144.9500
+        }
+    },
+    {
+        "Suburb": "Toorak",
+        "average_rent": 400.8453608247423,
+        "coordinates": {
+            "lat": -37.8416141,
+            "lng": 145.0176215
+        }
+    },
+    {
+        "Suburb": "Balwyn",
+        "average_rent": 423.07216494845363,
+        "coordinates": {
+            "lat": -37.8091737,
+            "lng": 145.0833678
+        }
+    },
+    {
+        "Suburb": "Glen Waverley",
+        "average_rent": 382.50515463917526,
+        "coordinates": {
+            "lat": -37.879667749999996,
+            "lng": 145.16291624893952
+        }
+    },
+    {
+        "Suburb": "Hawthorn",
+        "average_rent": 336.4226804123711,
+        "coordinates": {
+            "lat": -37.8244246,
+            "lng": 145.0317207
+        }
+    },
+    {
+        "Suburb": "Kew",
+        "average_rent": 404.1546391752577,
+        "coordinates": {
+            "lat": -37.8033586,
+            "lng": 145.0333285
+        }
+    },
+    {
+        "Suburb": "Toorak",
+        "average_rent": 400.8453608247423,
+        "coordinates": {
+            "lat": -37.8416141,
+            "lng": 145.0176215
+        }
+    },
+    {
+        "Suburb": "Mount Waverley",
+        "average_rent": 382.69072164948454,
+        "coordinates": {
+            "lat": -37.8752637,
+            "lng": 145.1281258
+        }
+    },
+    {
+        "Suburb": "Blackburn",
+        "average_rent": 346.87628865979383,
+        "coordinates": {
+            "lat": -37.82013725,
+            "lng": 145.1500496182243
+        }
+    },
+    {
+        "Suburb": "Box Hill",
+        "average_rent": 341.340206185567,
+        "coordinates": {
+            "lat": -37.8215116,
+            "lng": 145.1261267
+        }
+    },
+    {
+        "Suburb": "Bulleen",
+        "average_rent": 384.1340206185567,
+        "coordinates": {
+            "lat": -37.7662857,
+            "lng": 145.12130815898564
+        }
+    },
+    {
+        "Suburb": "Burwood",
+        "average_rent": 373.9896907216495,
+        "coordinates": {
+            "lat": -37.851671,
+            "lng": 145.0805767
+        }
+    },
+    {
+        "Suburb": "Camberwell",
+        "average_rent": 384.12371134020617,
+        "coordinates": {
+            "lat": -37.8384623,
+            "lng": 145.0740767
+        }
+    },
+    {
+        "Suburb": "Canterbury",
+        "average_rent": 394.9484536082474,
+        "coordinates": {
+            "lat": -37.8247469,
+            "lng": 145.0807636
+        }
+    },
+    {
+        "Suburb": "Southbank",
+        "average_rent": 464.89690721649487,
+        "coordinates": {
+            "lat": -37.8220,
+            "lng": 144.9646
+        }
+    },
+    {
+        "Suburb": "St Kilda",
+        "average_rent": 339.1340206185567,
+        "coordinates": {
+            "lat": -37.8676,
+            "lng": 144.9800
+        }
+    },
+    {
+        "Suburb": "Chadstone",
+        "average_rent": 350.5360824742268,
+        "coordinates": {
+            "lat": -37.8853,
+            "lng": 145.0820
+        }
+    },
+    {
+        "Suburb": "East Hawthorn",
+        "average_rent": 360.0618556701031,
+        "coordinates": {
+            "lat": -37.8333,
+            "lng": 145.0389
+        }
+    },
+    {
+        "Suburb": "Nunawading",
+        "average_rent": 328.89690721649487,
+        "coordinates": {
+            "lat": -37.8167,
+            "lng": 145.1720
+        }
+    },
+    {
+        "Suburb": "Carnegie",
+        "average_rent": 315.4742268041237,
+        "coordinates": {
+            "lat": -37.8891,
+            "lng": 145.0578
+        }
+    },
+    {
+        "Suburb": "Caulfield",
+        "average_rent": 358.36082474226805,
+        "coordinates": {
+            "lat": -37.8800,
+            "lng": 145.0222
+        }
+    },
+    {
+        "Suburb": "Mentone",
+        "average_rent": 324.0927835051546,
+        "coordinates": {
+            "lat": -37.9817,
+            "lng": 145.0644
+        }
+    },
+    {
+        "Suburb": "Altona",
+        "average_rent": 311.1340206185567,
+        "coordinates": {
+            "lat": -37.8694,
+            "lng": 144.8311
+        }
+    },
+    {
+        "Suburb": "Footscray",
+        "average_rent": 289.62886597938143,
+        "coordinates": {
+            "lat": -37.7994,
+            "lng": 144.8960
+        }
+    },
+    {
+        "Suburb": "Keilor East",
+        "average_rent": 328.0,
+        "coordinates": {
+            "lat": -37.7339,
+            "lng": 144.8547
+        }
+    },
+    {
+        "Suburb": "Melton",
+        "average_rent": 258.87628865979383,
+        "coordinates": {
+            "lat": -37.6833,
+            "lng": 144.5833
+        }
+    },
+    {
+        "Suburb": "St Albans",
+        "average_rent": 269.5773195876289,
+        "coordinates": {
+            "lat": -37.7446,
+            "lng": 144.8003
+        }
+    },
+    {
+        "Suburb": "Sunshine",
+        "average_rent": 265.7216494845361,
+        "coordinates": {
+            "lat": -37.7886,
+            "lng": 144.8319
+        }
+    },
+    {
+        "Suburb": "Sydenham",
+        "average_rent": 314.9484536082474,
+        "coordinates": {
+            "lat": -37.7033,
+            "lng": 144.7733
+        }
+    },
+    {
+        "Suburb": "Werribee",
+        "average_rent": 279.8453608247423,
+        "coordinates": {
+            "lat": -37.9000,
+            "lng": 144.6667
+        }
+    },
+    {
+        "Suburb": "West Footscray",
+        "average_rent": 291.21649484536084,
+        "coordinates": {
+            "lat": -37.7986,
+            "lng": 144.8825
+        }
+    },
+    {
+        "Suburb": "Yarraville",
+        "average_rent": 352.4845360824742,
+        "coordinates": {
+            "lat": -37.8167,
+            "lng": 144.8994
+        }
+    },
+    {
+        "Suburb": "Broadmeadows",
+        "average_rent": 288.92783505154637,
+        "coordinates": {
+            "lat": -37.6833,
+            "lng": 144.9000
+        }
+    },
+    {
+        "Suburb": "Brunswick",
+        "average_rent": 349.6701030927835,
+        "coordinates": {
+            "lat": -37.7667,
+            "lng": 144.9667
+        }
+    },
+    {
+        "Suburb": "Coburg",
+        "average_rent": 342.11340206185565,
+        "coordinates": {
+            "lat": -37.7333,
+            "lng": 144.9667
+        }
+    },
+    {
+        "Suburb": "Craigieburn",
+        "average_rent": 303.3917525773196,
+        "coordinates": {
+            "lat": -37.6000,
+            "lng": 144.9333
+        }
+    },
+    {
+        "Suburb": "East Brunswick",
+        "average_rent": 365.83505154639175,
+        "coordinates": {
+            "lat": -37.7667,
+            "lng": 144.9833
+        }
+    },
+    {
+        "Suburb": "Gladstone Park",
+        "average_rent": 298.55670103092785,
+        "coordinates": {
+            "lat": -37.6833,
+            "lng": 144.9000
+        }
+    },
+    {
+        "Suburb": "Keilor",
+        "average_rent": 339.87628865979383,
+        "coordinates": {
+            "lat": -37.7167,
+            "lng": 144.8500
+        }
+    },
+    {
+        "Suburb": "Oak Park",
+        "average_rent": 299.0412371134021,
+        "coordinates": {
+            "lat": -37.7167,
+            "lng": 144.9333
+        }
+    },
+    {
+        "Suburb": "Pascoe Vale",
+        "average_rent": 317.64948453608247,
+        "coordinates": {
+            "lat": -37.7333,
+            "lng": 144.9500
+        }
+    },
+    {
+        "Suburb": "Sunbury",
+        "average_rent": 290.9896907216495,
+        "coordinates": {
+            "lat": -37.5800,
+            "lng": 144.7244
+        }
+    },
+    {
+        "Suburb": "West Brunswick",
+        "average_rent": 287.36082474226805,
+        "coordinates": {
+            "lat": -37.7667,
+            "lng": 144.9500
+        }
+    },
+    {
+        "Suburb": "Bundoora",
+        "average_rent": 322.041
+    }
+]

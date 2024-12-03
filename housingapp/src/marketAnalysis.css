@@ -1,0 +1,107 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f7fa;
+    margin: 0;
+    padding: 0;
+}
+
+/* Main container styling */
+.market-analysis-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    max-width: 1200px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.map-container {
+    width: 90%;
+    max-width: 1000px;
+    text-align: center;
+    margin-left: 30%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 10px;
+    transition: transform 0.2s ease;
+}
+
+
+/* Hover effect on map containers */
+.map-container:hover {
+    transform: translateY(-5px);
+}
+
+/* Heading styling */
+.map-container h2 {
+    color: #333;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+/* Map styling */
+.leaflet-container {
+    height: 400px;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.leaflet-container2 {
+    height: 400px;
+    width: 75%;
+    border-radius: 5px;
+}
+
+/* Popup styling */
+.leaflet-popup-content-wrapper {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.leaflet-popup-content strong {
+    color: #333;
+    font-weight: bold;
+}
+
+/* Custom marker colors */
+.custom-marker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* to make it Responsive */
+@media (max-width: 768px) {
+    .map-container {
+        width: 100%;
+        margin: 0 10px 20px 10px;
+    }
+
+    .leaflet-container {
+        height: 300px;
+    }
+
+    .map-container h2 {
+        font-size: 1.2em;
+    }
+}
+
+@media (max-width: 480px) {
+    .leaflet-container {
+        height: 250px;
+    }
+
+    .map-container h2 {
+        font-size: 1em;
+    }
+}

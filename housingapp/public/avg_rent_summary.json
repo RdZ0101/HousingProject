@@ -1,0 +1,623 @@
+[
+    {
+        "Suburb": "Albert Park",
+        "average_rent": 432.16494845360825
+    },
+    {
+        "Suburb": "Armadale",
+        "average_rent": 362.45360824742266
+    },
+    {
+        "Suburb": "Carlton North",
+        "average_rent": 450.2680412371134
+    },
+    {
+        "Suburb": "Carlton-Parkville",
+        "average_rent": 380.2061855670103
+    },
+    {
+        "Suburb": "CBD-St Kilda Rd",
+        "average_rent": 412.7113402061856
+    },
+    {
+        "Suburb": "Collingwood",
+        "average_rent": 399.8659793814433
+    },
+    {
+        "Suburb": "Docklands",
+        "average_rent": 473.75555555555553
+    },
+    {
+        "Suburb": "East Melbourne",
+        "average_rent": 416.62886597938143
+    },
+    {
+        "Suburb": "East St Kilda",
+        "average_rent": 325.0
+    },
+    {
+        "Suburb": "Elwood",
+        "average_rent": 352.16494845360825
+    },
+    {
+        "Suburb": "Fitzroy",
+        "average_rent": 442.0927835051546
+    },
+    {
+        "Suburb": "Clifton Hill",
+        "average_rent": 431.2680412371134
+    },
+    {
+        "Suburb": "Flemington",
+        "average_rent": 349.35051546391753
+    },
+    {
+        "Suburb": "North Melbourne",
+        "average_rent": 383.02061855670104
+    },
+    {
+        "Suburb": "Port Melbourne",
+        "average_rent": 491.89690721649487
+    },
+    {
+        "Suburb": "Prahran",
+        "average_rent": 369.91752577319585
+    },
+    {
+        "Suburb": "Richmond",
+        "average_rent": 417.97938144329896
+    },
+    {
+        "Suburb": "South Melbourne",
+        "average_rent": 440.44329896907215
+    },
+    {
+        "Suburb": "South Yarra",
+        "average_rent": 375.62886597938143
+    },
+    {
+        "Suburb": "Southbank",
+        "average_rent": 464.89690721649487
+    },
+    {
+        "Suburb": "St Kilda",
+        "average_rent": 339.1340206185567
+    },
+    {
+        "Suburb": "Toorak",
+        "average_rent": 400.8453608247423
+    },
+    
+    {
+        "Suburb": "Balwyn",
+        "average_rent": 423.07216494845363
+    },
+    {
+        "Suburb": "Blackburn",
+        "average_rent": 346.87628865979383
+    },
+    {
+        "Suburb": "Box Hill",
+        "average_rent": 341.340206185567
+    },
+    {
+        "Suburb": "Bulleen",
+        "average_rent": 384.1340206185567
+    },
+    {
+        "Suburb": "Burwood",
+        "average_rent": 373.9896907216495
+    },
+    {
+        "Suburb": "Camberwell",
+        "average_rent": 384.12371134020617
+    },
+    {
+        "Suburb": "Canterbury",
+        "average_rent": 394.9484536082474
+    },
+    {
+        "Suburb": "Chadstone",
+        "average_rent": 350.5360824742268
+    },
+    {
+        "Suburb": "Clayton",
+        "average_rent": 326.340206185567
+    },
+    {
+        "Suburb": "Donvale",
+        "average_rent": 385.8556701030928
+    },
+    {
+        "Suburb": "East Hawthorn",
+        "average_rent": 360.0618556701031
+    },
+    {
+        "Suburb": "Glen Waverley",
+        "average_rent": 382.50515463917526
+    },
+    {
+        "Suburb": "Hawthorn",
+        "average_rent": 336.4226804123711
+    },
+    {
+        "Suburb": "Kew",
+        "average_rent": 404.1546391752577
+    },
+    {
+        "Suburb": "Mount Waverley",
+        "average_rent": 382.69072164948454
+    },
+    {
+        "Suburb": "Nunawading",
+        "average_rent": 328.89690721649487
+    },
+    {
+        "Suburb": "Vermont",
+        "average_rent": 359.5360824742268
+    },
+    {
+        "Suburb": "Aspendale",
+        "average_rent": 332.9072164948454
+    },
+    {
+        "Suburb": "Bentleigh",
+        "average_rent": 380.12371134020617
+    },
+    {
+        "Suburb": "Brighton",
+        "average_rent": 531.5051546391752
+    },
+    {
+        "Suburb": "Brighton East",
+        "average_rent": 533.1443298969073
+    },
+    {
+        "Suburb": "Carnegie",
+        "average_rent": 315.4742268041237
+    },
+    {
+        "Suburb": "Caulfield",
+        "average_rent": 358.36082474226805
+    },
+    {
+        "Suburb": "Cheltenham",
+        "average_rent": 359.88659793814435
+    },
+    {
+        "Suburb": "Elsternwick",
+        "average_rent": 347.2371134020619
+    },
+    {
+        "Suburb": "Hampton",
+        "average_rent": 461.7525773195876
+    },
+    {
+        "Suburb": "Malvern",
+        "average_rent": 385.7938144329897
+    },
+    {
+        "Suburb": "Malvern East",
+        "average_rent": 369.88659793814435
+    },
+    {
+        "Suburb": "Mentone",
+        "average_rent": 324.0927835051546
+    },
+    {
+        "Suburb": "Hughesdale",
+        "average_rent": 328.10309278350513
+    },
+    {
+        "Suburb": "Altona",
+        "average_rent": 311.1340206185567
+    },
+    {
+        "Suburb": "Footscray",
+        "average_rent": 289.62886597938143
+    },
+    {
+        "Suburb": "Keilor East",
+        "average_rent": 328.0
+    },
+    {
+        "Suburb": "Melton",
+        "average_rent": 258.87628865979383
+    },
+    {
+        "Suburb": "Newport",
+        "average_rent": 361.8556701030928
+    },
+    {
+        "Suburb": "St Albans",
+        "average_rent": 269.5773195876289
+    },
+    {
+        "Suburb": "Sunshine",
+        "average_rent": 265.7216494845361
+    },
+    {
+        "Suburb": "Sydenham",
+        "average_rent": 314.9484536082474
+    },
+    {
+        "Suburb": "Werribee",
+        "average_rent": 279.8453608247423
+    },
+    {
+        "Suburb": "West Footscray",
+        "average_rent": 291.21649484536084
+    },
+    {
+        "Suburb": "Williamstown",
+        "average_rent": 403.97938144329896
+    },
+    {
+        "Suburb": "Yarraville",
+        "average_rent": 352.4845360824742
+    },
+    {
+        "Suburb": "Broadmeadows-Roxburgh Park",
+        "average_rent": 288.92783505154637
+    },
+    {
+        "Suburb": "Brunswick",
+        "average_rent": 349.6701030927835
+    },
+    {
+        "Suburb": "Coburg",
+        "average_rent": 342.11340206185565
+    },
+    {
+        "Suburb": "Craigieburn",
+        "average_rent": 303.3917525773196
+    },
+    {
+        "Suburb": "East Brunswick",
+        "average_rent": 365.83505154639175
+    },
+    {
+        "Suburb": "Essendon",
+        "average_rent": 315.91752577319585
+    },
+    {
+        "Suburb": "Gladstone Park",
+        "average_rent": 298.55670103092785
+    },
+    {
+        "Suburb": "Keilor",
+        "average_rent": 339.87628865979383
+    },
+    {
+        "Suburb": "Moonee Ponds",
+        "average_rent": 344.8659793814433
+    },
+    {
+        "Suburb": "Oak Park",
+        "average_rent": 299.0412371134021
+    },
+    {
+        "Suburb": "Pascoe Vale",
+        "average_rent": 317.64948453608247
+    },
+    {
+        "Suburb": "Sunbury",
+        "average_rent": 290.9896907216495
+    },
+    {
+        "Suburb": "West Brunswick",
+        "average_rent": 287.36082474226805
+    },
+    {
+        "Suburb": "Group Total",
+        "average_rent": 311.1855670103093
+    },
+    {
+        "Suburb": "Bundoora",
+        "average_rent": 322.0412371134021
+    },
+    {
+        "Suburb": "Eltham",
+        "average_rent": 352.64948453608247
+    },
+    {
+        "Suburb": "Fairfield",
+        "average_rent": 308.08247422680415
+    },
+    {
+        "Suburb": "Heidelberg",
+        "average_rent": 324.9381443298969
+    },
+    {
+        "Suburb": "Ivanhoe",
+        "average_rent": 353.12371134020617
+    },
+    {
+        "Suburb": "Mill Park",
+        "average_rent": 303.77319587628864
+    },
+    {
+        "Suburb": "Northcote",
+        "average_rent": 382.680412371134
+    },
+    {
+        "Suburb": "Preston",
+        "average_rent": 322.0
+    },
+    {
+        "Suburb": "Reservoir",
+        "average_rent": 290.4226804123711
+    },
+    {
+        "Suburb": "Thomastown",
+        "average_rent": 281.1340206185567
+    },
+    {
+        "Suburb": "Thornbury",
+        "average_rent": 304.5979381443299
+    },
+    {
+        "Suburb": "Whittlesea",
+        "average_rent": 308.2886597938144
+    },
+    {
+        "Suburb": "Group Total",
+        "average_rent": 312.0618556701031
+    },
+    {
+        "Suburb": "Bayswater",
+        "average_rent": 298.2474226804124
+    },
+    {
+        "Suburb": "Boronia",
+        "average_rent": 304.69072164948454
+    },
+    {
+        "Suburb": "Croydon",
+        "average_rent": 316.340206185567
+    },
+    {
+        "Suburb": "Ferntree Gully",
+        "average_rent": 312.680412371134
+    },
+    {
+        "Suburb": "Ringwood",
+        "average_rent": 309.9072164948454
+    },
+    {
+        "Suburb": "Rowville",
+        "average_rent": 362.7319587628866
+    },
+    {
+        "Suburb": "Wantirna",
+        "average_rent": 347.0103092783505
+    },
+    {
+        "Suburb": "Yarra Ranges",
+        "average_rent": 302.2061855670103
+    },
+    {
+        "Suburb": "Group Total",
+        "average_rent": 316.78350515463916
+    },
+    {
+        "Suburb": "Berwick",
+        "average_rent": 325.25773195876286
+    },
+    {
+        "Suburb": "Cranbourne",
+        "average_rent": 300.10309278350513
+    },
+    {
+        "Suburb": "Dandenong",
+        "average_rent": 261.97938144329896
+    },
+    {
+        "Suburb": "Endeavour Hills",
+        "average_rent": 282.07216494845363
+    },
+    {
+        "Suburb": "Narre Warren",
+        "average_rent": 301.1958762886598
+    },
+    {
+        "Suburb": "Noble Park",
+        "average_rent": 271.5360824742268
+    },
+    {
+        "Suburb": "Pakenham",
+        "average_rent": 283.4020618556701
+    },
+    {
+        "Suburb": "Springvale",
+        "average_rent": 292.69072164948454
+    },
+    {
+        "Suburb": "Group Total",
+        "average_rent": 292.2371134020619
+    },
+    {
+        "Suburb": "Dromana",
+        "average_rent": 291.3917525773196
+    },
+    {
+        "Suburb": "Frankston",
+        "average_rent": 282.58762886597935
+    },
+    {
+        "Suburb": "Hastings",
+        "average_rent": 293.70103092783506
+    },
+    {
+        "Suburb": "Mt Eliza",
+        "average_rent": 365.87628865979383
+    },
+    {
+        "Suburb": "Seaford",
+        "average_rent": 291.63917525773195
+    },
+    {
+        "Suburb": "Group Total",
+        "average_rent": 296.30927835051546
+    },
+    {
+        "Suburb": "Belmont",
+        "average_rent": 291.9072164948454
+    },
+    {
+        "Suburb": "Corio",
+        "average_rent": 225.46391752577318
+    },
+    {
+        "Suburb": "Geelong",
+        "average_rent": 269.0412371134021
+    },
+    {
+        "Suburb": "Herne Hill",
+        "average_rent": 262.82474226804123
+    },
+    {
+        "Suburb": "Lara",
+        "average_rent": 300.2061855670103
+    },
+    {
+        "Suburb": "Newtown",
+        "average_rent": 286.5154639175258
+    },
+    {
+        "Suburb": "North Geelong",
+        "average_rent": 270.29896907216494
+    },
+    {
+        "Suburb": "Group Total",
+        "average_rent": 270.8453608247423
+    },
+    {
+        "Suburb": "Ballarat",
+        "average_rent": 241.38144329896906
+    },
+    {
+        "Suburb": "Mount Clear",
+        "average_rent": 262.49484536082474
+    },
+    {
+        "Suburb": "Sebastopol",
+        "average_rent": 235.41237113402062
+    },
+    {
+        "Suburb": "Wendouree",
+        "average_rent": 255.8041237113402
+    },
+    {
+        "Suburb": "Group Total",
+        "average_rent": 245.53608247422682
+    },
+    {
+        "Suburb": "Bendigo",
+        "average_rent": 248.2680412371134
+    },
+    {
+        "Suburb": "Flora Hill",
+        "average_rent": 252.98969072164948
+    },
+    {
+        "Suburb": "Golden Square",
+        "average_rent": 254.27835051546393
+    },
+    {
+        "Suburb": "North Bendigo",
+        "average_rent": 249.2680412371134
+    },
+    {
+        "Suburb": "Group Total",
+        "average_rent": 251.4742268041237
+    },
+    {
+        "Suburb": "Bairnsdale",
+        "average_rent": 242.23711340206185
+    },
+    {
+        "Suburb": "Benalla",
+        "average_rent": 223.41237113402062
+    },
+    {
+        "Suburb": "Castlemaine",
+        "average_rent": 261.4845360824742
+    },
+    {
+        "Suburb": "Echuca",
+        "average_rent": 255.02061855670104
+    },
+    {
+        "Suburb": "Hamilton",
+        "average_rent": 211.46391752577318
+    },
+    {
+        "Suburb": "Horsham",
+        "average_rent": 216.55670103092783
+    },
+    {
+        "Suburb": "Mildura",
+        "average_rent": 235.46391752577318
+    },
+    {
+        "Suburb": "Newborough",
+        "average_rent": 177.0
+    },
+    {
+        "Suburb": "Morwell",
+        "average_rent": 178.2577319587629
+    },
+    {
+        "Suburb": "Ocean Grove-Barwon Heads",
+        "average_rent": 321.0618556701031
+    },
+    {
+        "Suburb": "Portland",
+        "average_rent": 220.58762886597938
+    },
+    {
+        "Suburb": "Sale",
+        "average_rent": 231.06185567010309
+    },
+    {
+        "Suburb": "Seymour",
+        "average_rent": 216.31958762886597
+    },
+    {
+        "Suburb": "Shepparton",
+        "average_rent": 236.37113402061857
+    },
+    {
+        "Suburb": "Swan Hill",
+        "average_rent": 213.7422680412371
+    },
+    {
+        "Suburb": "Torquay",
+        "average_rent": 373.08247422680415
+    },
+    {
+        "Suburb": "Traralgon",
+        "average_rent": 239.2680412371134
+    },
+    {
+        "Suburb": "Wanagaratta",
+        "average_rent": 229.2577319587629
+    },
+    {
+        "Suburb": "Warragul",
+        "average_rent": 259.9896907216495
+    },
+    {
+        "Suburb": "Warrnambool",
+        "average_rent": 263.2886597938144
+    },
+    {
+        "Suburb": "Wodonga",
+        "average_rent": 259.680412371134
+    },
+    {
+        "Suburb": "Group Total",
+        "average_rent": 239.43298969072166
+    }
+]

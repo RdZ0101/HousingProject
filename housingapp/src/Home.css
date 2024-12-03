@@ -1,0 +1,109 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+.banner {
+    background-image: url('House.jpg');
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.banner h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 0;
+    margin-bottom: 200;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.banner p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.options {
+    display: flex;
+    width: 80%;
+    max-width: 800px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    justify-content: space-between;
+}
+
+.option {
+    position: relative;
+    width: 48%;
+    height: 300px;
+    text-decoration: none;
+    color: white;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.option h2 {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    font-size: 2rem;
+    margin: 0;
+}
+
+.buy {
+    background-image: url('house2.jpg'); 
+    background-size: cover;
+    background-position: center;
+}
+
+.rent {
+    background-image: url('house3.jpg'); 
+    background-size: cover;
+    background-position: center;
+}
+
+.option .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .banner h1 {
+        font-size: 2rem;
+    }
+
+    .banner p {
+        font-size: 1rem;
+    }
+
+    .options {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .option {
+        width: 90%;
+        margin-bottom: 15px;
+    }
+
+    .option h2 {
+        font-size: 1.5rem;
+    }
+}

@@ -1,0 +1,139 @@
+/* Container styling */
+.sales-prediction-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    max-width: 600px; 
+    margin: 0 auto;
+    padding: 20px; 
+}
+
+h1 {
+    font-size: 1.8rem; 
+    text-align: center;
+    margin-bottom: 20px; 
+}
+
+/* Label and Input Field Styling in a single line */
+.input-label {
+    display: flex;
+    float: left;
+    align-items: center;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.input-label label {
+    width: 150px;
+    margin-right: 10px;
+}
+
+.input-field {
+    flex-grow: 1;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.input-field:focus {
+    border-color: #007acc;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 122, 204, 0.3);
+}
+
+/* Suggestions List Styling */
+.suggestions-list {
+    list-style: none;
+    padding: 0;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    max-height: 150px;
+    overflow-y: auto;
+    width: 100%;
+}
+
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background-color: #f0f0f0;
+}
+
+/* Button Styling */
+.generate-button {
+    background-color: #007acc;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.generate-button:hover {
+    background-color: #005fa3;
+}
+
+.generate-button:focus {
+    outline: none;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .sales-prediction-container {
+        max-width: 90%;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .input-label {
+        font-size: 0.9rem;
+    }
+
+    .input-field {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .sales-prediction-container {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.2rem;
+    }
+
+    .input-label {
+        font-size: 0.85rem;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .input-field {
+        font-size: 0.9rem;
+        width: 100%;
+    }
+
+    .generate-button {
+        font-size: 0.95rem;
+        padding: 12px;
+    }
+}

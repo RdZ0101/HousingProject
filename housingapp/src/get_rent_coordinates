@@ -1,0 +1,24 @@
+import json
+
+# Corrected file paths
+with open('HousingProject/housingapp/public/avgSalesSuburbData.json', 'r') as f:
+    sales_data = json.load(f)
+
+with open('HousingProject/housingapp/public/avg_rent_summary.json', 'r') as f:
+    rent_data = json.load(f)
+
+# Create a dictionary from sales data for quick lookup by suburb name
+sales_dict = {entry['suburb']: entry['coordinates'] for entry in sales_data}
+
+# Add coordinates to rent data based on suburb name
+for rent_entry in rent_data:
+    suburb_name = rent_entry['Suburb']
+    coordinates = sales_dict.get(suburb_name)
+    if coordinates:
+        rent_entry['coordinates'] = coordinates
+
+# Save the combined data to a new JSON file
+with open('HousingProject/housingapp/public/avgRentSuburbsWithCoordinates.json', 'w') as f:
+    json.dump(rent_data, f, indent=4)
+
+print("Combined data saved to avgRentSuburbsWithCoordinates.json")
