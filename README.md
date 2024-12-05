@@ -17,7 +17,6 @@ Ensure the following Python libraries are installed:
 - `Uvicorn`  
 
 Install them using the following command:  
-```bash
 pip install pandas numpy matplotlib seaborn scikit-learn joblib fastapi pydantic requests geopy uvicorn
 
 JavaScript Libraries
