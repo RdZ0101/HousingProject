@@ -40,18 +40,18 @@ Required Files
 
 How It Works
 
-    Unzip the project folder:
-    Extract the contents of the zip file.
+Unzip the project folder:
+Extract the contents of the zip file.
 
-    Run the Rent Server:
-    Open the unzipped folder, navigate to the root directory, and use VS Code or Command Prompt to execute:
+Run the Rent Server:
+Open the unzipped folder, navigate to the root directory, and use VS Code or Command Prompt to execute:
 
-python RentServer.py
+    python RentServer.py
 
 Run the Sales Server:
 Navigate to the SalesPrediction directory in VS Code or Command Prompt and execute:
 
-python SalesServer.py
+    python SalesServer.py
 
 Run the APIs:
 Navigate to the housingapp directory and start the sales and rent APIs using a terminal.
@@ -59,4 +59,4 @@ Navigate to the housingapp directory and start the sales and rent APIs using a t
 Start the Web Application:
 In the housingapp directory, open a terminal and execute:
 
-npm start
+    npm start
